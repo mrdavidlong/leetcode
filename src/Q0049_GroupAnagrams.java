@@ -24,7 +24,7 @@ import java.util.Map;
  The order of your output does not matter.
  */
 public class Q0049_GroupAnagrams {
-    // https://leetcode.com/problems/group-anagrams/solution/
+    // inspired by https://leetcode.com/problems/group-anagrams/solution/
     public List<List<String>> groupAnagrams(String[] strs) {
         if (strs.length == 0) return new ArrayList();
         Map<String, List> ans = new HashMap<>();
@@ -36,16 +36,18 @@ public class Q0049_GroupAnagrams {
 
             StringBuilder sb = new StringBuilder("");
             for (int i = 0; i < 26; i++) {
-                sb.append('#');
-                sb.append(count[i]);
+                //sb.append('#');
+                if (count[i] > 0) {
+                    sb.append((char) ('a' + i));
+                    sb.append(count[i]);
+                }
             }
-            String key = sb.toString();
+            String key = (sb.length() == 0) ?  "empty" : sb.toString();
             if (!ans.containsKey(key)) ans.put(key, new ArrayList());
             ans.get(key).add(s);
         }
         return new ArrayList(ans.values());
     }
-
 
     public static void main(String[] args) {
         Q0049_GroupAnagrams sol = new Q0049_GroupAnagrams();

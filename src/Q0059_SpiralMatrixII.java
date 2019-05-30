@@ -33,27 +33,29 @@ public class Q0059_SpiralMatrixII {
         int num = 1;
 
         while (rowStart <= rowEnd && colStart <= colEnd) {
-            for (int i = colStart; i <= colEnd; i ++) {
-                matrix[rowStart][i] = num ++; //change
+            for (int i = colStart; i <= colEnd; i++) {
+                matrix[rowStart][i] = num++; //change
             }
-            rowStart ++;
+            rowStart++;
 
-            for (int i = rowStart; i <= rowEnd; i ++) {
-                matrix[i][colEnd] = num ++; //change
+            for (int i = rowStart; i <= rowEnd; i++) {
+                matrix[i][colEnd] = num++; //change
             }
-            colEnd --;
+            colEnd--;
 
-            for (int i = colEnd; i >= colStart; i --) {
-                if (rowStart <= rowEnd)
-                    matrix[rowEnd][i] = num ++; //change
+            if (rowStart <= rowEnd) {
+                for (int i = colEnd; i >= colStart; i--) {
+                    matrix[rowEnd][i] = num++; //change
+                }
+                rowEnd--;
             }
-            rowEnd --;
 
-            for (int i = rowEnd; i >= rowStart; i --) {
-                if (colStart <= colEnd)
-                    matrix[i][colStart] = num ++; //change
+            if (colStart <= colEnd) {
+                for (int i = rowEnd; i >= rowStart; i--) {
+                    matrix[i][colStart] = num++; //change
+                }
+                colStart++;
             }
-            colStart ++;
         }
 
         return matrix;

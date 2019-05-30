@@ -1,25 +1,8 @@
 /**
- * Created by davidlong on 7/3/18.
+ * https://leetcode.com/problems/wildcard-matching/
  */
 public class Q0044_WildcardMatching {
-    public boolean isMatch(String s, String p) {
-        if (p.isEmpty()) return s.isEmpty();
-
-        boolean firstMatch = (s.length() > 0) && (s.charAt(0) == p.charAt(0) || p.charAt(0) == '?');
-
-        boolean match = false;
-        if (p.charAt(0) == '*') {
-            if (p.length() > 1 && p.charAt(1) == '*') return isMatch(s, p.substring(1));
-            
-            match = ((p.length() > 0) && isMatch(s, p.substring(1)))
-                    || ((s.length() > 0) && isMatch(s.substring(1), p));
-        } else {
-            match = firstMatch && isMatch(s.substring(1), p.substring(1));
-        }
-
-        return match;
-    }
-
+    // https://leetcode.com/problems/wildcard-matching/discuss/17810/Linear-runtime-and-constant-space-solution
     public boolean comparison(String str, String pattern) {
         int s = 0, p = 0, match = 0, starIdx = -1;
         while (s < str.length()){
@@ -51,16 +34,12 @@ public class Q0044_WildcardMatching {
 
         return p == pattern.length();
     }
-    
+
     public static void main(String[] args) {
         Q0044_WildcardMatching sol = new Q0044_WildcardMatching();
-//        boolean match1 = sol.isMatch("aa", "a"); // false
-//        boolean match2 = sol.isMatch("aa", "*"); // true
-//        boolean match3 = sol.isMatch("cb", "?"); // false
-//        boolean match4 = sol.isMatch("adceb", "*a*b"); // true
-//        boolean match5 = sol.isMatch("acdcb", "a*c?b"); // false
 
         boolean compare = sol.comparison("abcdefg", "a*de?g"); // true
+        boolean compare1_1 = sol.comparison("abcdefg", "a*d*g"); // true
 
         boolean compare1 = sol.comparison("aa", "a"); // false
         boolean compare2 = sol.comparison("aa", "*"); // true

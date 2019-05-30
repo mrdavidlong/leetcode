@@ -30,19 +30,28 @@
  https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20题解.md#字符串编辑
  */
 public class Q0072_EditDistance {
+    // https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20题解.md#字符串编辑
     public int minDistance(String word1, String word2) {
         if (word1 == null || word2 == null) {
             return 0;
         }
         int m = word1.length(), n = word2.length();
+
+        // if one of the strings is empty
+        if (n * m == 0)
+            return n + m;
+
         // dp[i][j] is the min edit distance between the words up to index i of word 1 and index j of word 2
         int[][] dp = new int[m + 1][n + 1];
+
+        // init boundaries
         for (int i = 1; i <= m; i++) {
             dp[i][0] = i;
         }
         for (int i = 1; i <= n; i++) {
             dp[0][i] = i;
         }
+
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
                 if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
@@ -54,6 +63,13 @@ public class Q0072_EditDistance {
         }
         return dp[m][n];
     }
+
+    /*
+    Complexity Analysis
+
+Time complexity : O(mn) as it follows quite straightforward for the inserted loops.
+Space complexity : O(mn) since at each step we keep the results of all previous computations.
+     */
 
     public static void main(String[] args) {
         Q0072_EditDistance sol = new Q0072_EditDistance();

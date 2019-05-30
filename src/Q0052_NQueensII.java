@@ -2,7 +2,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by davidlong on 10/13/18.
+ * https://leetcode.com/problems/n-queens-ii/
  */
 public class Q0052_NQueensII {
     /**

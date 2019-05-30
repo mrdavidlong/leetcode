@@ -42,7 +42,7 @@
  Input: "-91283472332"
  Output: -2147483648
  Explanation: The number "-91283472332" is out of the range of a 32-bit signed integer.
- Thefore INT_MIN (−231) is returned.
+ Therefore INT_MIN (−2^31) is returned.
 
  */
 public class Q0008_StringToInteger {
@@ -50,20 +50,21 @@ public class Q0008_StringToInteger {
         if (str.isEmpty()) return 0;
 
         int sign = 1, base = 0, i = 0;
+
+        // get rid of white spaces
         while (i < str.length() && str.charAt(i) == ' ') {
             i++;
         }
+
+        // process the +/- sign
         if (i < str.length() && (str.charAt(i) == '+' || str.charAt(i) == '-')) {
             if (str.charAt(i) == '-') sign = -1;
             i++;
         }
 
-        /*
-        0123456789
-        2147483647
-       -2147483648
-         */
+        // while digits
         while (i < str.length() && str.charAt(i) >= '0' && str.charAt(i) <= '9') {
+            // handle overflow
             if (base > Integer.MAX_VALUE / 10
                     || (base == Integer.MAX_VALUE / 10
                         && ((sign == 1 && str.charAt(i) - '0' > 7)
@@ -71,6 +72,7 @@ public class Q0008_StringToInteger {
                 if (sign == 1) return Integer.MAX_VALUE;
                 else return Integer.MIN_VALUE;
             }
+
             base = 10 * base + (str.charAt(i) - '0');
             i++;
         }

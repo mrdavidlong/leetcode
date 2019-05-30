@@ -44,6 +44,10 @@ public class Q0238_ProductOfArrayExceptSelf {
         int[] result = sol.productExceptSelf(new int[] {1,2,3,4});
 
         // input: [ 1, 2, 3, 4]
+        //left product: [1, 1, 2, 6]
+        //right product:[24,12,4, 1]
+        // multiply left and right: [24,12, 8, 6]
+
         // res 1: [ 1, 1, 2, 6]
         // res 2: [24,12, 8, 6]
     }

@@ -23,22 +23,11 @@ import common.TreeNode;
  https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20题解.md#树
  */
 public class Q0112_PathSum {
+    // https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20题解.md#树
     public boolean hasPathSum(TreeNode root, int sum) {
-        return sumPath(root, 0, sum);
-    }
-
-    private boolean sumPath(TreeNode root, int sumSoFar, int sum) {
         if (root == null) return false;
-
-        sumSoFar = root.val + sumSoFar;
-
-        if (root.left == null && root.right == null) {
-            return sumSoFar == sum;
-        }
-
-        boolean hasPath = sumPath(root.left, sumSoFar, sum);
-        if (hasPath) return true;
-        return sumPath(root.right, sumSoFar, sum);
+        if (root.left == null && root.right == null && root.val == sum) return true;
+        return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
     }
 
     public static void main(String[] args) {

@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Created by davidlong on 7/1/18.
+ * https://leetcode.com/problems/substring-with-concatenation-of-all-words/
  */
 public class Q0030_SubstringWithConcatenationOfAllWords {
     private static List<String> getPerms(String[] words) {
@@ -200,7 +200,7 @@ public class Q0030_SubstringWithConcatenationOfAllWords {
                 if (map.containsKey(sHi)) {
                     temp.put(sHi, temp.getOrDefault(sHi, 0) + 1);
                     count++;
-                    // remove repeated words, since the requirement is that each word can only appear once
+                    // remove repeated words (including the beginning words), since the requirement is that each word can only appear once
                     while (temp.get(sHi) > map.get(sHi)) {
                         String sLo = s.substring(lo, lo + wl);
                         temp.put(sLo, temp.get(sLo) - 1);
@@ -230,7 +230,7 @@ public class Q0030_SubstringWithConcatenationOfAllWords {
         Q0030_SubstringWithConcatenationOfAllWords sol = new Q0030_SubstringWithConcatenationOfAllWords();
         
         String s1 = "barfoothefoobarman";
-        String[] words1 = new String[] {"foo","bar"};
+        String[] words1 = new String[] {"foo","bar","car"};
         List<Integer> positions1 = sol.findSubstring(s1, words1);
         for (Integer p : positions1) {
             System.out.println(p + " ");

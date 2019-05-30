@@ -18,8 +18,8 @@ import java.util.List;
      1
     / \
    2   3
-  / \
- 4   5
+      / \
+     4   5
 
  as "[1,2,3,null,null,4,5]"
  Clarification: The above format is the same as how LeetCode serializes a binary tree. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself.
@@ -30,12 +30,12 @@ Same as Q0297_SerializeAndDeserializeBinaryTree
  */
 public class Q0449_SerializeAndDeserializeBST {
     //https://leetcode.com/problems/serialize-and-deserialize-binary-tree/solution/
-    public String rserialize(TreeNode root, String str) {
+    private String rserialize(TreeNode root, String str) {
         // Recursive serialization.
         if (root == null) {
             str += "null,";
         } else {
-            str += str.valueOf(root.val) + ",";
+            str += root.val + ",";
             str = rserialize(root.left, str);
             str = rserialize(root.right, str);
         }
@@ -47,7 +47,7 @@ public class Q0449_SerializeAndDeserializeBST {
         return rserialize(root, "");
     }
 
-    public TreeNode rdeserialize(List<String> l) {
+    private TreeNode rdeserialize(List<String> l) {
         // Recursive deserialization.
         if (l.get(0).equals("null")) {
             l.remove(0);
@@ -65,6 +65,7 @@ public class Q0449_SerializeAndDeserializeBST {
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
         String[] data_array = data.split(",");
+        // new LinkedList<String>(...) is needed
         List<String> data_list = new LinkedList<String>(Arrays.asList(data_array));
         return rdeserialize(data_list);
     }
@@ -79,9 +80,9 @@ public class Q0449_SerializeAndDeserializeBST {
         TreeNode t5 = new TreeNode(5);
 
         t1.left = t2;
-        t1.right = t5;
-        t2.left = t3;
-        t2.right = t4;
+        t1.right = t3;
+        t3.left = t4;
+        t3.right = t5;
 
         String ser = sol.serialize(t1);
         TreeNode t = sol.deserialize(ser);

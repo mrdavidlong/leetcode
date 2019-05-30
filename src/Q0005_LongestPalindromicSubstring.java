@@ -3,40 +3,44 @@
  */
 public class Q0005_LongestPalindromicSubstring {
 
-    public static boolean isPalindrome(char[] a, int start, int end) {
-        while (start <= end) {
-            if (a[start] != a[end]) {
-                return false;
-            }
-            start++;
-            end--;
-        }
-        return true;
-    }
+//    public static boolean isPalindrome(char[] a, int start, int end) {
+//        while (start <= end) {
+//            if (a[start] != a[end]) {
+//                return false;
+//            }
+//            start++;
+//            end--;
+//        }
+//        return true;
+//    }
+//
+//    public static String longestPalindrome(String s) {
+//
+//        int maxLength = -1;
+//        int maxStart = -1;
+//        int maxEnd = -1;
+//        char[] a = s.toCharArray();
+//        for (int i = 0; i < a.length; i++) {
+//            for (int j = i; j < a.length; j++) {
+//                if (isPalindrome(a, i, j)) {
+//                    int currentLength = j-i+1;
+//                    if (currentLength > maxLength) {
+//                        maxLength = currentLength;
+//                        maxStart = i;
+//                        maxEnd = j;
+//                    }
+//                }
+//            }
+//        }
+//
+//        return s.substring(maxStart, maxEnd + 1);
+//    }
 
+    // https://leetcode.com/problems/longest-palindromic-substring/solution/
+    // time: O(n^2)
     public static String longestPalindrome(String s) {
+        if (s == null || s.length() == 0) return "";
 
-        int maxLength = -1;
-        int maxStart = -1;
-        int maxEnd = -1;
-        char[] a = s.toCharArray();
-        for (int i = 0; i < a.length; i++) {
-            for (int j = i; j < a.length; j++) {
-                if (isPalindrome(a, i, j)) {
-                    int currentLength = j-i+1;
-                    if (currentLength > maxLength) {
-                        maxLength = currentLength;
-                        maxStart = i;
-                        maxEnd = j;
-                    }
-                }
-            }
-        }
-
-        return s.substring(maxStart, maxEnd + 1);
-    }
-
-    public static String longestPalindrome_OfficialSolution(String s) {
         int start = 0, end = 0;
         for (int i = 0; i < s.length(); i++) {
             int len1 = expandAroundCenter(s, i, i);
@@ -64,8 +68,8 @@ public class Q0005_LongestPalindromicSubstring {
         String output = longestPalindrome(input);
         System.out.println("output = " + output);
 
-        String outputBetter = longestPalindrome_OfficialSolution(input);
-        System.out.println("outputBetter = " + outputBetter);
+//        String outputBetter = longestPalindrome_OfficialSolution(input);
+//        System.out.println("outputBetter = " + outputBetter);
     }
 
 

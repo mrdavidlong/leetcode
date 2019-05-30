@@ -28,6 +28,7 @@ public class Q0094_BinaryTreeInorderTraversal {
         Stack<TreeNode> stack = new Stack<>();
         TreeNode cur = root;
         while (cur != null || !stack.isEmpty()) {
+            // push all the left nodes into the stack, and then pop, so we can process the left node first
             while (cur != null) {
                 stack.push(cur);
                 cur = cur.left;
@@ -37,6 +38,21 @@ public class Q0094_BinaryTreeInorderTraversal {
             cur = node.right;
         }
         return order;
+    }
+
+    public List<Integer> inorderTraversalRec(TreeNode root) {
+        List<Integer> order = new ArrayList<>();
+        if (root == null) return order;
+        inorderTraversalRecCore(root, order);
+        return order;
+    }
+
+    private void inorderTraversalRecCore(TreeNode node, List<Integer> order) {
+        if (node != null) {
+            inorderTraversalRecCore(node.left, order);
+            order.add(node.val);
+            inorderTraversalRecCore(node.right, order);
+        }
     }
 
     public static void main(String[] args) {
@@ -50,7 +66,8 @@ public class Q0094_BinaryTreeInorderTraversal {
         t1.right = t2;
         t2.left = t3;
 
-        List<Integer> postOrder = sol.inorderTraversal(t1);
+        List<Integer> inOrderRec = sol.inorderTraversalRec(t1);
+        List<Integer> inOrder = sol.inorderTraversal(t1);
 
     }
 }

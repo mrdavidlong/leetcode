@@ -13,7 +13,7 @@ Given an integer n, return all distinct solutions to the n-queens puzzle.
 Each solution contains a distinct board configuration of the n-queens' placement, where 'Q' and '.' both indicate a queen and an empty space respectively.
  */
 
-public class Q0051_NQueensBestFromLeetcodeSol {
+public class Q0051_NQueensFromLeetcodeSol {
 
     // https://leetcode.com/problems/n-queens/discuss/19805/My-easy-understanding-Java-Solution
     public List<List<String>> solveNQueens(int n) {
@@ -21,6 +21,7 @@ public class Q0051_NQueensBestFromLeetcodeSol {
         for(int i = 0; i < n; i++)
             for(int j = 0; j < n; j++)
                 board[i][j] = '.';
+
         List<List<String>> result = new ArrayList<>();
         dfs(board, 0 /* colIndex */, result);
         return result;
@@ -54,7 +55,7 @@ public class Q0051_NQueensBestFromLeetcodeSol {
 
     private List<String> construct(char[][] board) {
         List<String> res = new LinkedList<>();
-        for(int i = 0; i < board.length; i++) {
+        for (int i = 0; i < board.length; i++) {
             String s = new String(board[i]);
             res.add(s);
         }
@@ -62,8 +63,8 @@ public class Q0051_NQueensBestFromLeetcodeSol {
     }
 
     public static void main(String[] args) {
-        Q0051_NQueensBestFromLeetcodeSol sol = new Q0051_NQueensBestFromLeetcodeSol();
-        List<List<String>> result = sol.solveNQueens(8);
+        Q0051_NQueensFromLeetcodeSol sol = new Q0051_NQueensFromLeetcodeSol();
+        List<List<String>> result = sol.solveNQueens(4);
         for (List<String> list : result) {
             for (String s : list) {
                 System.out.println(s);

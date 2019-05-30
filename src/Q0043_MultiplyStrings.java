@@ -38,7 +38,11 @@ public class Q0043_MultiplyStrings {
         }
 
         StringBuilder sb = new StringBuilder();
-        for (int p : pos) if (!(sb.length() == 0 && p == 0)) sb.append(p);
+        for (int p : pos) {
+            if (!(sb.length() == 0 && p == 0)) { // the if statement avoid the leading 0 from adding to the result
+                sb.append(p);
+            }
+        }
         return sb.length() == 0 ? "0" : sb.toString();
     }
 

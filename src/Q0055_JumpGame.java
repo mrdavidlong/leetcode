@@ -40,7 +40,7 @@ public class Q0055_JumpGame {
         //for (int nextPosition = furthestJump; nextPosition > position; nextPosition--)
         // old
         // for (int nextPosition = position + 1; nextPosition <= furthestJump; nextPosition++) {
-        for (int nextPosition = furthestJump; nextPosition > position; nextPosition--) {
+        for (int nextPosition = position + 1; nextPosition <= furthestJump; nextPosition++) {
             if (canJumpFromPositionSol1(nextPosition, nums)) {
                 return true;
             }
@@ -53,9 +53,10 @@ public class Q0055_JumpGame {
         return canJumpFromPositionSol1(0, nums);
     }
 
-    // solution 2: top down memo
+
     Index[] memo;
 
+    // solution 2: top down memo
     public boolean canJumpFromPositionSol2(int position, int[] nums) {
         if (memo[position] != Index.UNKNOWN) {
             return memo[position] == Index.GOOD ? true : false;

@@ -36,8 +36,10 @@ public class Q0079_WordSearch {
         if (curLen == word.length()) {
             return true;
         }
+
         if (r < 0 || r >= rowLength || c < 0 || c >= colLength
-                || board[r][c] != word.charAt(curLen) || visited[r][c]) {
+                || board[r][c] != word.charAt(curLen) // check self!!
+                || visited[r][c]) {
             return false;
         }
 
@@ -72,6 +74,8 @@ public class Q0079_WordSearch {
             {'S','F','C','S'},
             {'A','D','E','E'}
         };
+
+        boolean exist4 = sol.exist(new char[][]{{'a'}}, "b");
 
         String word1 = "ABCCED";
         boolean exist1 = sol.exist(board, word1);

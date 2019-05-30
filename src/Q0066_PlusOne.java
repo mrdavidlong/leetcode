@@ -54,8 +54,10 @@ public class Q0066_PlusOne {
             digits[i] = 0;
         }
 
+        // the scenario was 9999... + 1
         int[] newNumber = new int [n+1];
         newNumber[0] = 1;
+        // the rest of the digits are zero
 
         return newNumber;
     }

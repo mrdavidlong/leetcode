@@ -27,6 +27,7 @@
  Input: m = 7, n = 3
  Output: 28
 
+ https://leetcode.com/problems/unique-paths/
  */
 public class Q0062_UniquePaths {
 //    public int uniquePaths(int m, int n) {
@@ -51,33 +52,66 @@ Therefore I populated the edges with 1 first and use DP to get the full 2-D arra
 
 Please give any suggestions on improving the code.
     */
+//    public int uniquePaths(int m, int n) {
+//        Integer[][] map = new Integer[m][n];
+//        for (int i = 0; i < m; i++) {
+//            map[i][0] = 1;
+//        }
+//
+//        for (int j= 0; j < n; j++) {
+//            map[0][j] = 1;
+//        }
+//
+//        for (int i = 1; i < m; i++) {
+//            for(int j = 1; j < n; j++) {
+//                map[i][j] = map[i-1][j] + map[i][j-1];
+//            }
+//        }
+//        return map[m-1][n-1];
+//    }
+
+    // https://leetcode.com/problems/unique-paths/discuss/22980/Clean-and-simple-DP-java
     public int uniquePaths(int m, int n) {
-        Integer[][] map = new Integer[m][n];
-        for (int i = 0; i < m; i++) {
-            map[i][0] = 1;
-        }
-
-        for (int j= 0; j < n; j++) {
-            map[0][j] = 1;
-        }
-
-        for (int i = 1; i < m; i++) {
-            for(int j = 1; j < n; j++) {
-                map[i][j] = map[i-1][j] + map[i][j-1];
+        int[][] grid = new int[m][n];
+        for (int i = 0; i < m; i++){
+            for (int j = 0; j < n; j++){
+                if (i == 0 || j == 0)
+                    grid[i][j] = 1;
+                else
+                    grid[i][j] = grid[i][j-1] + grid[i-1][j];
             }
         }
-        return map[m-1][n-1];
+        return grid[m-1][n-1];
+    }
+
+    // BEST
+    // https://leetcode.com/problems/unique-paths-ii/discuss/23250/Short-JAVA-solution
+    public int uniquePaths2(int m, int n) {
+        int[] dp = new int[n];
+        dp[0] = 1;
+        for (int i = 0; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                dp[j] += dp[j - 1]; // adding top and left value
+            }
+        }
+        return dp[n - 1];
     }
 
     public static void main(String[] args) {
 
         Q0062_UniquePaths sol = new Q0062_UniquePaths();
         int numOfPaths1 = sol.uniquePaths(1,1); // 1
-        int numOfPaths2a = sol.uniquePaths(1,2); //
-        int numOfPaths2b = sol.uniquePaths(2,1); //
-        int numOfPaths2c = sol.uniquePaths(2,2); //
+        int numOfPaths2a = sol.uniquePaths(1,2); // 1
+        int numOfPaths2b = sol.uniquePaths(2,1); // 1
+        int numOfPaths2c = sol.uniquePaths(2,2); // 2
         int numOfPaths2d = sol.uniquePaths(3,2); // 3
-
         int numOfPaths3 = sol.uniquePaths(7,3); // 28
+
+        int numOfPaths2_1 = sol.uniquePaths2(1,1); // 1
+        int numOfPaths2_2a = sol.uniquePaths2(1,2); // 1
+        int numOfPaths2_2b = sol.uniquePaths2(2,1); // 1
+        int numOfPaths2_2c = sol.uniquePaths2(2,2); // 2
+        int numOfPaths2_2d = sol.uniquePaths2(3,2); // 3
+        int numOfPaths2_3 = sol.uniquePaths2(7,3); // 28
     }
 }

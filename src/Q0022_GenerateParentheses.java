@@ -2,9 +2,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by davidlong on 6/30/18.
+ * https://leetcode.com/problems/generate-parentheses/
+ * Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+ *
+ * For example, given n = 3, a solution set is:
+ *
+ * [
+ *   "((()))",
+ *   "(()())",
+ *   "(())()",
+ *   "()(())",
+ *   "()()()"
+ * ]
  */
 public class Q0022_GenerateParentheses {
+
+    // https://leetcode.com/problems/generate-parentheses/solution/
     public List<String> generateParenthesis(int n) {
         List<String> ans = new ArrayList();
         backtrack(ans, "", 0, 0, n);
@@ -19,7 +32,8 @@ public class Q0022_GenerateParentheses {
 
         if (open < max)
             backtrack(ans, cur + "(", open + 1, close, max);
-        if (close < open)
+
+        if (close < open) // close has the be less than or equal to open
             backtrack(ans, cur + ")", open, close + 1, max);
     }
 

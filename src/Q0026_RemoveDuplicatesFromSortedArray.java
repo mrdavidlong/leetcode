@@ -1,5 +1,5 @@
 /**
- * Created by davidlong on 6/30/18.
+ * https://leetcode.com/problems/remove-duplicates-from-sorted-array/
  */
 public class Q0026_RemoveDuplicatesFromSortedArray {
     public int removeDuplicatesByDavid(int[] nums) {

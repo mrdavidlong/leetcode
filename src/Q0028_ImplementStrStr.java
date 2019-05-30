@@ -1,5 +1,5 @@
 /**
- * Created by davidlong on 7/1/18.
+ * https://leetcode.com/problems/implement-strstr/
  */
 public class Q0028_ImplementStrStr {
     public int strStr(String haystack, String needle) {

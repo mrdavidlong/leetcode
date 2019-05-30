@@ -20,15 +20,11 @@
 public class Q0677_MapSumPairs {
 
     private class Node {
-        Node[] child = new Node[26];
+        Node[] children = new Node[26];
         int value;
     }
 
     private Node root = new Node();
-
-    public Q0677_MapSumPairs() {
-
-    }
 
     public void insert(String key, int val) {
         insert(key, root, val);
@@ -41,10 +37,10 @@ public class Q0677_MapSumPairs {
             return;
         }
         int index = indexForChar(key.charAt(0));
-        if (node.child[index] == null) {
-            node.child[index] = new Node();
+        if (node.children[index] == null) {
+            node.children[index] = new Node();
         }
-        insert(key.substring(1), node.child[index], val);
+        insert(key.substring(1), node.children[index], val);
     }
 
     public int sum(String prefix) {
@@ -55,11 +51,13 @@ public class Q0677_MapSumPairs {
         if (node == null) return 0;
         if (prefix.length() != 0) {
             int index = indexForChar(prefix.charAt(0));
-            return sum(prefix.substring(1), node.child[index]);
+            return sum(prefix.substring(1), node.children[index]);
         }
         int sum = node.value;
-        for (Node child : node.child) {
-            sum += sum(prefix, child);
+        for (Node child : node.children) {
+            if (child != null) {
+                sum += sum(prefix, child);
+            }
         }
         return sum;
     }

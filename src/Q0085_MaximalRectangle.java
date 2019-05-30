@@ -52,6 +52,7 @@ public class Q0085_MaximalRectangle {
         return max;
     }
 
+    // BEST
     // https://www.youtube.com/watch?v=g8bSdXCG-lA
     // https://github.com/mission-peace/interview/blob/master/src/com/interview/dynamic/MaximumRectangularSubmatrixOf1s.java
 //    public int maximum(int input[][]){

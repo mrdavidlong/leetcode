@@ -58,5 +58,7 @@ public class Q0024_SwapNodesInPairs {
         Q0024_SwapNodesInPairs q = new Q0024_SwapNodesInPairs();
         ListNode resultNode = q.swapPairsIteration(n1);
         resultNode.print();
+        ListNode resultNodeRec = q.swapPairsRecursion(n1);
+        resultNodeRec.print();
     }
 }

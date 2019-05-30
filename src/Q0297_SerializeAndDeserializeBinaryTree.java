@@ -19,8 +19,8 @@ import java.util.List;
      1
     / \
    2   3
-  / \
- 4   5
+      / \
+     4   5
 
  as "[1,2,3,null,null,4,5]"
  Clarification: The above format is the same as how LeetCode serializes a binary tree. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself.
@@ -78,6 +78,15 @@ public class Q0297_SerializeAndDeserializeBinaryTree {
         TreeNode t3 = new TreeNode(3);
         TreeNode t4 = new TreeNode(4);
         TreeNode t5 = new TreeNode(5);
+
+/*
+     1
+    / \
+   2   5
+  / \
+ 3   4
+
+*/
 
         t1.left = t2;
         t1.right = t5;

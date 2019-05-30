@@ -19,7 +19,7 @@ import java.util.Stack;
 public class Q0084_LargestRectangleInHistogram {
 
     // https://leetcode.com/problems/largest-rectangle-in-histogram/discuss/28900/O(n)-stack-based-JAVA-solution
-    public int largestRectangleArea(int[] height) {
+    public int largestRectangleAreaOrig(int[] height) {
         int len = height.length;
         Stack<Integer> s = new Stack<Integer>();
         int maxArea = 0;
@@ -31,6 +31,25 @@ public class Q0084_LargestRectangleInHistogram {
                 int tp = s.pop();
                 maxArea = Math.max(maxArea, height[tp] * (s.isEmpty() ? i : i - 1 - s.peek()));
                 i--;
+            }
+        }
+        return maxArea;
+    }
+
+
+    // inspired by https://leetcode.com/problems/largest-rectangle-in-histogram/discuss/28900/O(n)-stack-based-JAVA-solution
+    public int largestRectangleArea(int[] height) {
+        int len = height.length;
+        Stack<Integer> s = new Stack<Integer>();
+        int maxArea = 0;
+        int i = 0;
+        while (i <= len) {
+            int h = (i == len ? 0 : height[i]);
+            if (s.isEmpty() || h >= height[s.peek()]) {
+                s.push(i++);
+            } else {
+                int tp = s.pop();
+                maxArea = Math.max(maxArea, height[tp] * (s.isEmpty() ? i : i - 1 - s.peek()));
             }
         }
         return maxArea;

@@ -1,7 +1,7 @@
 import common.ListNode;
 
 /**
- * Created by davidlong on 6/30/18.
+ * https://leetcode.com/problems/reverse-nodes-in-k-group/
  */
 public class Q0025_ReverseNodesInKGroup {
 
@@ -51,10 +51,10 @@ public class Q0025_ReverseNodesInKGroup {
             // head - head-pointer to direct part,
             // curr - head-pointer to reversed part;
             while (count-- > 0) { // reverse current k-group:
-                ListNode tmp = head.next; // tmp - next head in direct part
+                ListNode next = head.next; // tmp - next head in direct part
                 head.next = curr; // preappending "direct" head to the reversed list
                 curr = head; // move head of reversed part to a new node
-                head = tmp; // move "direct" head to the next node in direct part
+                head = next; // move "direct" head to the next node in direct part
             }
             head = curr;
         }
@@ -79,8 +79,8 @@ public class Q0025_ReverseNodesInKGroup {
         n7.next = n8;
 
         Q0025_ReverseNodesInKGroup q = new Q0025_ReverseNodesInKGroup();
-        //ListNode resultNode = q.reverseKGroup(n1, 3);
-        ListNode resultNode = q.reverseKGroupByDavid(n1, 3);
+        ListNode resultNode = q.reverseKGroup(n1, 3);
+        //ListNode resultNode = q.reverseKGroupByDavid(n1, 3);
         resultNode.print();
     }
 }

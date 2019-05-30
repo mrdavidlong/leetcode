@@ -62,6 +62,7 @@ public class Q0010_Regular_Expression_Matching {
         }
     }
 
+    // Top-Down Variation
     enum Result {
         TRUE, FALSE
     }
@@ -71,6 +72,8 @@ public class Q0010_Regular_Expression_Matching {
         return dp(0, 0, text, pattern, memo);
     }
 
+    // i is index to the text
+    // j is index to the pattern
     public boolean dp(int i, int j, String text, String pattern, Result[][] memo) {
         if (memo[i][j] != null) {
             return memo[i][j] == Result.TRUE;
@@ -85,8 +88,8 @@ public class Q0010_Regular_Expression_Matching {
                             pattern.charAt(j) == '.'));
 
             if (j + 1 < pattern.length() && pattern.charAt(j+1) == '*') {
-                ans = (dp(i, j+2, text, pattern, memo) || // assume no starred char in text, so remove the char* in the pattern
-                        first_match && dp(i+1, j, text, pattern, memo)); // first match, so assume one more more starred char in text, so remove one char from text
+                ans = (dp(i, j+2, text, pattern, memo) || // assume no starred char in text, so remove the starred char and star in the pattern
+                        first_match && dp(i+1, j, text, pattern, memo)); // first match, so assume one or more starred char in text, so remove one char from text
             } else {
                 ans = first_match && dp(i+1, j+1, text, pattern, memo);
             }
@@ -95,7 +98,44 @@ public class Q0010_Regular_Expression_Matching {
         return ans;
     }
 
+    // https://www.youtube.com/watch?v=l3hda49XcDE
+    // https://github.com/mission-peace/interview/blob/master/src/com/interview/dynamic/RegexMatching.java
+    /**
+     * Dynamic programming technique for regex matching.
+     */
     public boolean isMatch(String text, String pattern) {
+        if (text == null && pattern == null) return true;
+        else if (text == null || pattern == null) return false;
+
+        boolean[][] T = new boolean[text.length() + 1][pattern.length() + 1];
+        T[0][0] = true;
+
+        //Deals with patterns like a* or a*b* or a*b*c*
+        for (int i = 1; i < T[0].length; i++) {
+            if (pattern.charAt(i-1) == '*') {
+                T[0][i] = T[0][i - 2];
+            }
+        }
+
+        for (int i = 1; i < T.length; i++) {
+            for (int j = 1; j < T[0].length; j++) {
+                if (pattern.charAt(j - 1) == '.' || pattern.charAt(j - 1) == text.charAt(i - 1)) { // both same character,
+                    T[i][j] = T[i-1][j-1]; // take off last char from both text and pattern
+                } else if (pattern.charAt(j - 1) == '*')  {
+                    T[i][j] = T[i][j - 2]; // assume no zero char in text
+                    if (pattern.charAt(j-2) == '.' || pattern.charAt(j - 2) == text.charAt(i - 1)) { // text has the same starred char
+                        T[i][j] = T[i][j] | T[i - 1][j]; // take off one char from text
+                    }
+                } else {
+                    T[i][j] = false;
+                }
+            }
+        }
+        return T[text.length()][pattern.length()];
+    }
+
+    // Bottom-Up Variation
+    public boolean isMatchBottomUpDP(String text, String pattern) {
         boolean[][] dp = new boolean[text.length() + 1][pattern.length() + 1];
         dp[text.length()][pattern.length()] = true;
 
@@ -118,11 +158,14 @@ public class Q0010_Regular_Expression_Matching {
         Q0010_Regular_Expression_Matching q = new Q0010_Regular_Expression_Matching();
 
         String s0 = "abccfga";
-        String p0 = "abc*f.a";
+        //String p0 = "abc*f.a";
+        String p0 = "a*";
         boolean isMatchRec = q.isMatchRec(s0, p0);
         System.out.println("isMatchRec = " + isMatchRec);
 
-        boolean isMatchMemo = q.isMatchMemo(s0, p0);
+        //boolean isMatchMemo = q.isMatchMemo(s0, p0);
+        boolean isMatchMemo = q.isMatchMemo( "abccfga", "abc*f.a");
+        //boolean isMatchMemo = q.isMatch("", "a*b*");
         System.out.println("isMatchMemo = " + isMatchMemo);
 
         boolean isMatch = q.isMatch(s0, p0);

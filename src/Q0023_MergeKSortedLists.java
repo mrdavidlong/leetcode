@@ -52,58 +52,59 @@ public class Q0023_MergeKSortedLists {
 //    }
 
     // https://leetcode.com/problems/merge-k-sorted-lists/discuss/10528/A-java-solution-based-on-Priority-Queue
-    public ListNode mergeKLists(List<ListNode> lists) {
-        if (lists == null || lists.size() == 0) return null;
-
-        PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.size(), new Comparator<ListNode>(){
-            @Override
-            public int compare(ListNode n1,ListNode n2){
-                if (n1.val < n2.val)
-                    return -1;
-                else if (n1.val == n2.val)
-                    return 0;
-                else
-                    return 1;
-            }
-        });
-
-        ListNode head = null;
-        ListNode tail = null;
-
-        for (ListNode node : lists)
-            if (node != null)
-                queue.offer(node);
-
-        while (!queue.isEmpty()){
-            ListNode n = queue.poll();
-            if (head == null && tail == null) {
-                head = n;
-                tail = n;
-            } else {
-                tail.next = n;
-                tail = tail.next;
-            }
-
-            if (tail.next != null)
-                queue.offer(tail.next);
-        }
-        return head;
-    }
+//    public ListNode mergeKLists(List<ListNode> lists) {
+//        if (lists == null || lists.size() == 0) return null;
+//
+//        PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.size(), new Comparator<ListNode>(){
+//            @Override
+//            public int compare(ListNode n1,ListNode n2){
+//                if (n1.val < n2.val)
+//                    return -1;
+//                else if (n1.val == n2.val)
+//                    return 0;
+//                else
+//                    return 1;
+//            }
+//        });
+//
+//        ListNode head = null;
+//        ListNode tail = null;
+//
+//        for (ListNode node : lists)
+//            if (node != null)
+//                queue.offer(node);
+//
+//        while (!queue.isEmpty()){
+//            ListNode n = queue.poll();
+//            if (head == null && tail == null) {
+//                head = n;
+//                tail = n;
+//            } else {
+//                tail.next = n;
+//                tail = tail.next;
+//            }
+//
+//            if (tail.next != null)
+//                queue.offer(tail.next);
+//        }
+//        return head;
+//    }
 
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists == null || lists.length == 0) return null;
 
-        PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.length, new Comparator<ListNode>(){
-            @Override
-            public int compare(ListNode n1,ListNode n2){
-                if (n1.val < n2.val)
-                    return -1;
-                else if (n1.val == n2.val)
-                    return 0;
-                else
-                    return 1;
-            }
-        });
+//        PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.length, new Comparator<ListNode>(){
+//            @Override
+//            public int compare(ListNode n1, ListNode n2){
+//                if (n1.val < n2.val)
+//                    return -1;
+//                else if (n1.val == n2.val)
+//                    return 0;
+//                else
+//                    return 1;
+//            }
+//        });
+        PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.length, (a, b) -> a.val - b.val);
 
         ListNode head = null;
         ListNode tail = null;
@@ -156,7 +157,8 @@ public class Q0023_MergeKSortedLists {
         n7.next = n8;
 
         Q0023_MergeKSortedLists q = new Q0023_MergeKSortedLists();
-        List<ListNode> listOfLists = Arrays.asList(n1, n4, n7);
+        //List<ListNode> listOfLists = Arrays.asList(n1, n4, n7);
+        ListNode[] listOfLists = new ListNode[] {n1, n4, n7};
         ListNode resultHead = q.mergeKLists(listOfLists);
 
         printNode(resultHead);

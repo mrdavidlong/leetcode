@@ -45,7 +45,7 @@ public int romanToInt(String s) {
     for (int i = 0; i < s.length() - 1; i++) {
         int curInt = map.get(s.charAt(i));
         int nextInt = map.get(s.charAt(i + 1));
-        if(curInt < nextInt){
+        if (curInt < nextInt) {
             result -= curInt;
         } else {
             result += curInt;
@@ -58,7 +58,7 @@ public int romanToInt(String s) {
     public static void main(String[] args) {
         Q0013_RomanToInteger q = new Q0013_RomanToInteger();
         String input = "MCMXCIV";
-        int result = q.romanToInt(input);
+        int result = q.romanToInt(input); // 1994
         System.out.println(result);
 
     }

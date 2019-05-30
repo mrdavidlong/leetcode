@@ -16,24 +16,24 @@ private static Map<Character, Character> matchingParentheses = new HashMap<Chara
     }
 };
 
-public boolean isValidByDavid(String s) {
-    LinkedList stack = new LinkedList();
-    for (int i = 0; i < s.length(); i++) {
-        char c = s.charAt(i);
-        if (c == '(' || c == '[' || c == '{') {
-            stack.push(c);
-        } else if (c == ')' || c == ']' || c == '}') {
-            if (stack.isEmpty()) return false;
+    public boolean isValidByDavid(String s) {
+        LinkedList stack = new LinkedList();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c == '(' || c == '[' || c == '{') {
+                stack.push(c);
+            } else if (c == ')' || c == ']' || c == '}') {
+                if (stack.isEmpty()) return false;
 
-            char stackTop = (char)stack.pop();
-            if (matchingParentheses.get(stackTop) != c) {
-                return false;
+                char stackTop = (char)stack.pop();
+                if (matchingParentheses.get(stackTop) != c) {
+                    return false;
+                }
             }
         }
-    }
 
-    return stack.isEmpty();
-}
+        return stack.isEmpty();
+    }
 
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
@@ -94,5 +94,8 @@ public boolean isValidByDavid(String s) {
         boolean valid5 = q.isValid(input5);
         System.out.println("valid5 = " + valid5);
 
+        String input6 = "{[abc]}";
+        boolean valid6 = q.isValidByDavid(input6);
+        System.out.println("valid6 = " + valid6);
     }
 }

@@ -35,6 +35,7 @@ public class Q0077_Combinations {
         }
 
         for (int i = start; i <= n - k + 1; i++) {  // cut out the branches
+        //for (int i = start; i <= n ; i++) {  // cut out the branches
             tempList.add(i);
             backtracking(n, i + 1, k - 1, result, tempList);
             tempList.remove(tempList.size() - 1);
@@ -83,7 +84,7 @@ public class Q0077_Combinations {
 //        3 4 5
 
         Q0077_Combinations sol = new Q0077_Combinations();
-        List<List<Integer>> result = sol.combine(4,4);
+        List<List<Integer>> result = sol.combine(4,2);
         for (List<Integer> list : result) {
             for (Integer i : list) {
                 System.out.print(i + " ");

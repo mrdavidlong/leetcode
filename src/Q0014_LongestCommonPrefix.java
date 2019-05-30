@@ -4,8 +4,9 @@
 public class Q0014_LongestCommonPrefix {
 
     private boolean sameCharAtPos(String[] strs, char c, int pos) {
-        for (String s : strs) {
-            if (pos >= s.length() || s.charAt(pos) != c) return false;
+        // start with i = 1, since c is from strs[0]
+        for (int i = 1; i < strs.length; i++) {
+            if (pos >= strs[i].length() || strs[i].charAt(pos) != c) return false;
         }
         return true;
     }
@@ -15,10 +16,9 @@ public class Q0014_LongestCommonPrefix {
         if (strs.length == 1) return strs[0];
 
         int i = 0;
-        char[] chars = strs[0].toCharArray();
-        for (char c : chars) {
+        for (; i < strs[0].length(); i++) {
+            char c = strs[0].charAt(i);
             if (sameCharAtPos(strs, c, i) == false) break;
-            i++;
         }
         return strs[0].substring(0, i);
     }
@@ -38,7 +38,7 @@ public class Q0014_LongestCommonPrefix {
         if (strs == null || strs.length == 0) return "";
         for (int i = 0; i < strs[0].length() ; i++){
             char c = strs[0].charAt(i);
-            for (int j = 1; j < strs.length; j ++) {
+            for (int j = 1; j < strs.length; j++) {
                 if (i == strs[j].length() || strs[j].charAt(i) != c)
                     return strs[0].substring(0, i);
             }
@@ -49,7 +49,7 @@ public class Q0014_LongestCommonPrefix {
     public static void main(String[] args) {
         Q0014_LongestCommonPrefix q = new Q0014_LongestCommonPrefix();
         String[] strings = new String[] {"flower","flow","flight"};
-        String longestPrefix = q.longestCommonPrefix(strings);
+        String longestPrefix = q.longestCommonPrefixByDavid(strings);
         System.out.println("longestPrefix = " + longestPrefix);
 
     }

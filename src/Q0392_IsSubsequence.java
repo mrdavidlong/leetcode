@@ -21,8 +21,8 @@ public class Q0392_IsSubsequence {
         Q0392_IsSubsequence sol = new Q0392_IsSubsequence();
 
         String s = "abc";
-        //String t = "ahbgdc";
-        String t = "bdeahgdc";
+        String t = "ahbgdc";
+        //String t = "bdeahgdc";
         boolean isSubseq1 = sol.isSubsequence(s,t);
     }
 }

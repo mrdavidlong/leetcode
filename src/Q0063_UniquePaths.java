@@ -62,9 +62,9 @@ public class Q0063_UniquePaths {
                     obstacleGrid[r][c] = 0;
                 } else {
                     if (r == 0 && c == 0) {
-                        obstacleGrid[r][c] = 1; // 1 way start from and end at the end
+                        obstacleGrid[r][c] = 1; // 1 way start from (0,0) and end at (0,0)
                     } else if (r == 0) {
-                        obstacleGrid[r][c] = obstacleGrid[r][c - 1];
+                        obstacleGrid[r][c] = obstacleGrid[r][c - 1]; // if no obstacles in the first row, all values in the first row will be 1.  But if there is an obstacle, then all values ot the right of the obstacle will be 0
                     } else if (c == 0) {
                         obstacleGrid[r][c] = obstacleGrid[r - 1][c];
                     } else {
@@ -77,6 +77,7 @@ public class Q0063_UniquePaths {
         return obstacleGrid[m-1][n-1];
     }
 
+    // BEST
     // https://leetcode.com/problems/unique-paths-ii/discuss/23250/Short-JAVA-solution
     public int uniquePathsWithObstaclesDP(int[][] obstacleGrid) {
         int width = obstacleGrid[0].length;
@@ -87,7 +88,7 @@ public class Q0063_UniquePaths {
                 if (row[j] == 1)
                     dp[j] = 0;
                 else if (j > 0)
-                    dp[j] += dp[j - 1];
+                    dp[j] += dp[j - 1]; // adding top and left value
             }
         }
         return dp[width - 1];
@@ -117,8 +118,8 @@ public class Q0063_UniquePaths {
         int[][] obstacleGrid3 =
                 {
                         {0,0,0},
-                        {0,1,0},
-                        {0,0, 0}
+                        {1,0,0},
+                        {0,0,0}
                 };
         int numOfPaths3 = sol.uniquePathsWithObstaclesDP(obstacleGrid3);
 

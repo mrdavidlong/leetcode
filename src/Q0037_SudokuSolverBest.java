@@ -18,12 +18,12 @@ public class Q0037_SudokuSolverBest {
             }
         }
 
-        //backtracking(board, 0, 0, rowsUsed, colsUsed, cubesUsed);
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                backtracking(board, i, j, rowsUsed, colsUsed, cubesUsed);
-            }
-        }
+//        for (int i = 0; i < 9; i++) {
+//            for (int j = 0; j < 9; j++) {
+//                backtracking(board, i, j, rowsUsed, colsUsed, cubesUsed);
+//            }
+//        }
+        backtracking(board, 0, 0, rowsUsed, colsUsed, cubesUsed);
     }
 
     private boolean backtracking(char[][] board, int row, int col, boolean[][] rowsUsed, boolean[][] colsUsed, boolean[][] cubesUsed) {

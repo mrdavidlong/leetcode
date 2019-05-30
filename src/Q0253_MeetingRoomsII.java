@@ -25,7 +25,7 @@ import java.util.PriorityQueue;
  */
 public class Q0253_MeetingRoomsII {
     //https://leetcode.com/problems/meeting-rooms-ii/solution/
-    public int minMeetingRooms(Interval[] intervals) {
+    public int minMeetingRoomsPQ(Interval[] intervals) {
 
         // Check for the base case. If there are no intervals, return 0
         if (intervals.length == 0) {
@@ -33,23 +33,32 @@ public class Q0253_MeetingRoomsII {
         }
 
         // Min heap
+//        PriorityQueue<Integer> allocator =
+//                new PriorityQueue<Integer>(
+//                        intervals.length,
+//                        new Comparator<Integer>() {
+//                            public int compare(Integer a, Integer b) {
+//                                return a - b;
+//                            }
+//                        });
+
         PriorityQueue<Integer> allocator =
-                new PriorityQueue<Integer>(
+                new PriorityQueue<>(
                         intervals.length,
-                        new Comparator<Integer>() {
-                            public int compare(Integer a, Integer b) {
-                                return a - b;
-                            }
-                        });
+                        (a, b) -> a - b);
 
         // Sort the intervals by start time
+//        Arrays.sort(
+//                intervals,
+//                new Comparator<Interval>() {
+//                    public int compare(Interval a, Interval b) {
+//                        return a.start - b.start;
+//                    }
+//                });
         Arrays.sort(
                 intervals,
-                new Comparator<Interval>() {
-                    public int compare(Interval a, Interval b) {
-                        return a.start - b.start;
-                    }
-                });
+                (a, b) -> a.start - b.start);
+
 
         // Add the first meeting
         allocator.add(intervals[0].end);
@@ -71,6 +80,53 @@ public class Q0253_MeetingRoomsII {
         return allocator.size();
     }
 
+
+    public int minMeetingRooms(Interval[] intervals) {
+        // Check for the base case. If there are no intervals, return 0
+        if (intervals.length == 0) {
+            return 0;
+        }
+
+        Integer[] start = new Integer[intervals.length];
+        Integer[] end = new Integer[intervals.length];
+
+        for (int i = 0; i < intervals.length; i++) {
+            start[i] = intervals[i].start;
+            end[i] = intervals[i].end;
+        }
+
+        // Sort the intervals by start time
+        Arrays.sort(start);
+
+        // Sort the intervals by end time
+        Arrays.sort(end);
+
+        // The two pointers in the algorithm: e_ptr and s_ptr.
+        int startPointer = 0, endPointer = 0;
+
+        // Variables to keep track of maximum number of rooms used.
+        int usedRooms = 0;
+
+        // Iterate over intervals.
+        while (startPointer < intervals.length) {
+
+            // If there is a meeting that has ended by the time the meeting at `start_pointer` starts
+            if (start[startPointer] >= end[endPointer]) {
+                usedRooms -= 1;
+                endPointer += 1;
+            }
+
+            // We do this irrespective of whether a room frees up or not.
+            // If a room got free, then this used_rooms += 1 wouldn't have any effect. used_rooms would
+            // remain the same in that case. If no room was free, then this would increase used_rooms
+            usedRooms += 1;
+            startPointer += 1;
+
+        }
+
+        return usedRooms;
+    }
+
     public static void main(String[] args) {
         Q0253_MeetingRoomsII sol = new Q0253_MeetingRoomsII();
 
@@ -79,6 +135,16 @@ public class Q0253_MeetingRoomsII {
         intervals[1] = new Interval(5, 10);
         intervals[2] = new Interval(15, 20);
         int minMeetingRooms = sol.minMeetingRooms(intervals);
+
+
+        Interval[] intervals2 = new Interval[6];
+        intervals2[0] = new Interval(1, 10);
+        intervals2[1] = new Interval(2, 7);
+        intervals2[2] = new Interval(3, 19);
+        intervals2[3] = new Interval(8, 12);
+        intervals2[4] = new Interval(10, 20);
+        intervals2[5] = new Interval(11, 30);
+        int minMeetingRooms2 = sol.minMeetingRooms(intervals2);
     }
 
 }

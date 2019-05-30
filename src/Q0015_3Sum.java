@@ -5,7 +5,22 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by davidlong on 6/29/18.
+ * https://leetcode.com/problems/3sum/
+ Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
+
+ Note:
+
+ The solution set must not contain duplicate triplets.
+
+ Example:
+
+ Given array nums = [-1, 0, 1, 2, -1, -4],
+
+ A solution set is:
+ [
+ [-1, 0, 1],
+ [-1, -1, 2]
+ ]
  */
 public class Q0015_3Sum {
     public List<List<Integer>> threeSumBruteForce(int[] nums) {
@@ -80,15 +95,19 @@ The idea is to sort an input array and then run through all indices of a possibl
         Arrays.sort(num);
         List<List<Integer>> res = new LinkedList<>();
         for (int i = 0; i < num.length-2; i++) {
-            if (i == 0 || (i > 0 && num[i] != num[i-1])) {
+            if (i == 0 || (i > 0 && num[i] != num[i-1])) {  // avoid duplicates
                 int lo = i+1, hi = num.length-1, sum = 0 - num[i];
                 while (lo < hi) {
                     if (num[lo] + num[hi] == sum) {
                         res.add(Arrays.asList(num[i], num[lo], num[hi]));
 
                         // avoid duplicates
-                        while (lo < hi && num[lo] == num[lo+1]) lo++;
-                        while (lo < hi && num[hi] == num[hi-1]) hi--;
+                        while (lo < hi && num[lo] == num[lo+1]) {
+                            lo++;
+                        }
+                        while (lo < hi && num[hi] == num[hi-1]) {
+                            hi--;
+                        }
 
                         // next
                         lo++; hi--;
@@ -106,6 +125,7 @@ The idea is to sort an input array and then run through all indices of a possibl
     public static void main(String[] args) {
         Q0015_3Sum q = new Q0015_3Sum();
         int[] input = new int[] {-1, 0, 1, 2, -1, -4};
+        // sorted: {-4, -1, -1, 0, 1, 2};
         //int[] input = new int[] {-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6};
         List<List<Integer>> lists = q.threeSum(input);
         for (List<Integer> list : lists) {

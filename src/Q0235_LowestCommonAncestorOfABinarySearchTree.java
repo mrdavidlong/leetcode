@@ -35,10 +35,26 @@ import common.TreeNode;
 
  */
 public class Q0235_LowestCommonAncestorOfABinarySearchTree {
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestorRecur(TreeNode root, TreeNode p, TreeNode q) {
         if (root.val > p.val && root.val > q.val) return lowestCommonAncestor(root.left, p, q);
         if (root.val < p.val && root.val < q.val) return lowestCommonAncestor(root.right, p, q);
         return root;
+    }
+
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        TreeNode node = root;
+
+        while (node != null) {
+            if (node.val > p.val && node.val > q.val) {
+                node = node.left;
+            } else if (node.val < p.val && node.val < q.val) {
+                node = node.right;
+            } else {
+                return node;
+            }
+        }
+
+        return null;
     }
 
     public static void main(String[] args) {

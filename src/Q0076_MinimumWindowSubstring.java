@@ -22,7 +22,7 @@ import java.util.Map;
  */
 public class Q0076_MinimumWindowSubstring {
 
-    // https://leetcode.com/problems/minimum-window-substring/solution/
+    // modified https://leetcode.com/problems/minimum-window-substring/solution/
     public String minWindow(String s, String t) {
 
         if (s.length() == 0 || t.length() == 0) {
@@ -51,8 +51,9 @@ public class Q0076_MinimumWindowSubstring {
         // Dictionary which keeps a count of all the unique characters in the current window.
         Map<Character, Integer> windowCounts = new HashMap<Character, Integer>();
 
-        // ans list of the form (window length, left, right)
-        int[] ans = {-1, 0, 0};
+        int minWindowLength = 0;
+        int minWindowStart = 0;
+        int minWindowEnd = 0;
 
         while (r < s.length()) {
             // Add one character from the right to the window
@@ -70,10 +71,10 @@ public class Q0076_MinimumWindowSubstring {
             while (l <= r && formed == required) {
                 c = s.charAt(l);
                 // Save the smallest window until now.
-                if (ans[0] == -1 || r - l + 1 < ans[0]) {
-                    ans[0] = r - l + 1;
-                    ans[1] = l;
-                    ans[2] = r;
+                if (minWindowLength == 0 || r - l + 1 < minWindowLength) {
+                    minWindowLength = r - l + 1;
+                    minWindowStart = l;
+                    minWindowEnd = r;
                 }
 
                 // The character at the position pointed by the
@@ -91,7 +92,7 @@ public class Q0076_MinimumWindowSubstring {
             r++;
         }
 
-        return ans[0] == -1 ? "" : s.substring(ans[1], ans[2] + 1);
+        return minWindowLength == 0 ? "" : s.substring(minWindowStart, minWindowEnd + 1);
     }
 
     // https://leetcode.com/problems/minimum-window-substring/solution/

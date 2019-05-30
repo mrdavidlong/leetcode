@@ -49,6 +49,7 @@ public class Q0518_CoinChange2 {
 
     public static void main(String[] args) {
         Q0518_CoinChange2 sol = new Q0518_CoinChange2();
+        int combinations0 = sol.change(5, new int[] {1});
         int combinations = sol.change(5, new int[] {1,2,5});
         int combinations2 = sol.change(3, new int[] {2});
         int combinations3 = sol.change(10, new int[] {10});

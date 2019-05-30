@@ -37,7 +37,7 @@ public class Q0046_Permutations {
     }
 
     private void backtrack(final int [] nums, List<List<Integer>> result, List<Integer> tempList){
-        if(tempList.size() == nums.length){
+        if (tempList.size() == nums.length) {
             result.add(new ArrayList<>(tempList));
         } else{
             for(int i = 0; i < nums.length; i++){

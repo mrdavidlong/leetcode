@@ -25,6 +25,7 @@
 
  */
 public class Q0035_SearchInsertPosition {
+    // https://leetcode.com/problems/search-insert-position/discuss/15080/My-8-line-Java-solution
     public int searchInsert(int[] A, int target) {
         int low = 0, high = A.length-1;
         while (low <= high) {

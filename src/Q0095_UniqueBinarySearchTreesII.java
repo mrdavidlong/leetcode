@@ -83,10 +83,10 @@ public class Q0095_UniqueBinarySearchTreesII {
 
         // pick up a root
         for (int i = start; i <= end; i++) {
-            // all possible left subtrees if i is choosen to be a root
+            // all possible left subtrees if i is chosen to be a root
             LinkedList<TreeNode> left_trees = generate_trees(start, i - 1);
 
-            // all possible right subtrees if i is choosen to be a root
+            // all possible right subtrees if i is chosen to be a root
             LinkedList<TreeNode> right_trees = generate_trees(i + 1, end);
 
             // connect left and right trees to the root i

@@ -1,6 +1,7 @@
 import common.TreeNode;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
@@ -32,19 +33,38 @@ import java.util.Stack;
 public class Q0113_PathSumII {
 
     // https://leetcode.com/problems/path-sum-ii/discuss/36673/Simple-DFS-Java-Solution
-    public void pathSumInner(TreeNode root, int sum, Stack<Integer> path, List<List<Integer>> resultList) {
-        path.push(root.val);
-        if(root.left == null && root.right == null)
-            if(sum == root.val) resultList.add(new ArrayList<Integer>(path));
-        if(root.left!=null) pathSumInner(root.left, sum-root.val, path, resultList);
-        if(root.right!=null)pathSumInner(root.right, sum-root.val, path, resultList);
-        path.pop();
+//     public void pathSumInner(TreeNode root, int sum, Stack<Integer> path, List<List<Integer>> resultList) {
+//         path.push(root.val);
+//         if(root.left == null && root.right == null)
+//             if(sum == root.val) resultList.add(new ArrayList<Integer>(path));
+//         if(root.left!=null) pathSumInner(root.left, sum-root.val, path, resultList);
+//         if(root.right!=null)pathSumInner(root.right, sum-root.val, path, resultList);
+//         path.pop();
+//     }
+//
+//     public List<List<Integer>> pathSum(TreeNode root, int sum) {
+//         List<List<Integer>> resultList = new ArrayList<List<Integer>>();
+//         if(root==null) return resultList;
+//         Stack<Integer> path = new Stack<Integer>();
+//         pathSumInner(root, sum, path, resultList);
+//         return resultList;
+//     }
+
+     // by david
+    public void pathSumInner(TreeNode root, int sum, LinkedList<Integer> path, List<List<Integer>> resultList) {
+        if (root != null) {
+            path.addLast(root.val);
+            if (root.left == null && root.right == null && sum == root.val) resultList.add(new ArrayList<>(path));
+            if (root.left != null) pathSumInner(root.left, sum - root.val, path, resultList);
+            if (root.right != null) pathSumInner(root.right, sum - root.val, path, resultList);
+            path.removeLast();
+        }
     }
 
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
-        List<List<Integer>> resultList = new ArrayList<List<Integer>>();
-        if(root==null) return resultList;
-        Stack<Integer> path = new Stack<Integer>();
+        List<List<Integer>> resultList = new ArrayList<>();
+        if (root==null) return resultList;
+        LinkedList<Integer> path = new LinkedList<>();
         pathSumInner(root, sum, path, resultList);
         return resultList;
     }

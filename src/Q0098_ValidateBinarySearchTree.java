@@ -22,8 +22,8 @@ import common.TreeNode;
      5
     / \
    1   4
-  / \
- 3   6
+      / \
+     3   6
  Output: false
  Explanation: The input is: [5,1,4,null,null,3,6]. The root node's value
  is 5 but its right child's value is 4.
@@ -47,13 +47,26 @@ public class Q0098_ValidateBinarySearchTree {
     public static void main(String[] args) {
         Q0098_ValidateBinarySearchTree sol = new Q0098_ValidateBinarySearchTree();
 
+        TreeNode s2 = new TreeNode(2);
+        TreeNode s1 = new TreeNode(1);
+        TreeNode s3 = new TreeNode(3);
+        s2.left = s1;
+        s2.right = s3;
+
+        boolean isValid = sol.isValidBST(s2);
+
+        TreeNode t5 = new TreeNode(5);
         TreeNode t1 = new TreeNode(1);
-        TreeNode t2 = new TreeNode(2);
+        TreeNode t4 = new TreeNode(4);
         TreeNode t3 = new TreeNode(3);
+        TreeNode t6 = new TreeNode(6);
 
-        t2.left = t1;
-        t2.right = t3;
+        t5.left = t1;
+        t5.right = t4;
+        t4.left = t3;
+        t4.right = t6;
 
-        boolean isValidBST = sol.isValidBST(t2);
+        boolean isValid2 = sol.isValidBST(t5);
+
     }
 }
