@@ -64,8 +64,8 @@ https://leetcode.com/problems/design-search-autocomplete-system/solution/
  */
 public class Q0642_DesignSearchAutocompleteSystem {
 
-    static public class AutocompleteSystem {
-        class Node {
+    public static class AutocompleteSystem {
+        private class Node {
             Node(String st, int t) {
                 sentence = st;
                 times = t;
@@ -74,7 +74,7 @@ public class Q0642_DesignSearchAutocompleteSystem {
             int times;
         }
 
-        class Trie {
+        private class Trie {
             int times;
             Trie[] branches = new Trie[27];
         }
@@ -85,35 +85,37 @@ public class Q0642_DesignSearchAutocompleteSystem {
 
         public void insert(Trie t, String s, int times) {
             for (int i = 0; i < s.length(); i++) {
-                if (t.branches[indexOfChar(s.charAt(i))] == null)
-                    t.branches[indexOfChar(s.charAt(i))] = new Trie();
-                t = t.branches[indexOfChar(s.charAt(i))];
+                int index = indexOfChar(s.charAt(i));
+                if (t.branches[index] == null)
+                    t.branches[index] = new Trie();
+                t = t.branches[index];
             }
             t.times += times;
         }
 
         public List<Node> lookup(Trie t, String s) {
-            List<Node> list = new ArrayList< >();
+            List<Node> list = new ArrayList<>();
             for (int i = 0; i < s.length(); i++) {
-                if (t.branches[indexOfChar(s.charAt(i))] == null)
+                int index = indexOfChar(s.charAt(i));
+                if (t.branches[index] == null)
                     return new ArrayList<>();
-                t = t.branches[indexOfChar(s.charAt(i))];
+                t = t.branches[index];
             }
-            traverse(s, t, list);
+            traverse(t, s, list);
             return list;
         }
 
-        public void traverse(String s, Trie t, List<Node> list) {
+        public void traverse(Trie t, String s, List<Node> list) {
             if (t.times > 0)
                 list.add(new Node(s, t.times));
 
             for (char i = 'a'; i <= 'z'; i++) {
                 if (t.branches[i - 'a'] != null)
-                    traverse(s + i, t.branches[i - 'a'], list);
+                    traverse(t.branches[i - 'a'], s + i, list);
             }
 
             if (t.branches[26] != null)
-                traverse(s + ' ', t.branches[26], list);
+                traverse(t.branches[26], s + ' ', list);
         }
         
         Trie root;
@@ -126,7 +128,7 @@ public class Q0642_DesignSearchAutocompleteSystem {
 
         String cur_sent = "";
         public List<String> input(char c) {
-            List<String> res = new ArrayList < > ();
+            List<String> res = new ArrayList <> ();
             if (c == '#') {
                 insert(root, cur_sent, 1);
                 cur_sent = "";
@@ -154,5 +156,7 @@ public class Q0642_DesignSearchAutocompleteSystem {
         AutocompleteSystem autocompleteSystem = new AutocompleteSystem(sentences, frequences);
         List<String> autoCompleteList = autocompleteSystem.input('i');
         List<String> autoCompleteList2 = autocompleteSystem.input(' ');
+        List<String> autoCompleteList3 = autocompleteSystem.input('a');
+        List<String> autoCompleteList4 = autocompleteSystem.input('#');
     }
 }
