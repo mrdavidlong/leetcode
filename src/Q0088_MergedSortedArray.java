@@ -22,7 +22,7 @@ public class Q0088_MergedSortedArray {
         int index2 = n - 1;
         int mergedIndex = m + n -1;
 
-        while (index1 >=0 && index2 >=0) {
+        while (index1 >= 0 && index2 >= 0) {
             if (nums1[index1] >= nums2[index2]) {
                 nums1[mergedIndex--] = nums1[index1--];
             } else {
@@ -39,8 +39,7 @@ public class Q0088_MergedSortedArray {
     public static void main(String[] args) {
         Q0088_MergedSortedArray sol = new Q0088_MergedSortedArray();
 
-        //int[] nums1 = {1,2,3,0,0,0};
-        int[] nums1 = {7,8,9,0,0,0};
+        int[] nums1 = {1,2,3,0,0,0};
         int m = 3;
 
         int[] nums2 = {2,5,6};

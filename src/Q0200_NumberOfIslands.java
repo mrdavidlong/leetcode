@@ -55,6 +55,35 @@ public class Q0200_NumberOfIslands {
         }
     }
 
+    public int numIslandsNotChangingGrid(char[][] grid) {
+        if (grid == null || grid.length == 0) {
+            return 0;
+        }
+        m = grid.length;
+        n = grid[0].length;
+        int islandsNum = 0;
+        boolean[][] visited = new boolean[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] != '0' && !visited[i][j]) {
+                    dfs(grid, i, j, visited);
+                    islandsNum++;
+                }
+            }
+        }
+        return islandsNum;
+    }
+
+    private void dfs(char[][] grid, int i, int j, boolean[][] visited) {
+        if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] == '0' || visited[i][j]) {
+            return;
+        }
+        visited[i][j] = true;
+        for (int[] d : direction) {
+            dfs(grid, i + d[0], j + d[1], visited);
+        }
+    }
+
     public static void main(String[] args) {
         Q0200_NumberOfIslands sol = new Q0200_NumberOfIslands();
         char[][] grid =
@@ -62,13 +91,15 @@ public class Q0200_NumberOfIslands {
              {'1','1','0','1','0'},
              {'1','1','0','0','0'},
              {'0','0','0','0','0'}};
-        int numOfIsands = sol.numIslands(grid);
+        int numOfIslandsNotChangingGrid = sol.numIslandsNotChangingGrid(grid);
+        int numOfIslands = sol.numIslands(grid);
 
         char[][] grid2 =
                 {{'1','1','0','0','0'},
                  {'1','1','0','0','0'},
                  {'0','0','1','0','0'},
                  {'0','0','0','1','1'}};
-        int numOfIsands2 = sol.numIslands(grid2);
+        int numOfIslandsNotChangingGrid2 = sol.numIslandsNotChangingGrid(grid2);
+        int numOfIslands2 = sol.numIslands(grid2);
     }
 }

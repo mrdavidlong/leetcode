@@ -178,5 +178,13 @@ public class Q0073_SetMatrixZeroes {
         };
         sol.setZeroes(matrix2);
 
+        int[][] matrix3 =
+                {
+                        {1,1,2,0},
+                        {3,4,5,2},
+                        {1,3,1,5}
+                };
+        sol.setZeroes(matrix3);
+
     }
 }

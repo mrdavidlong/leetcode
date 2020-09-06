@@ -30,7 +30,6 @@ public class Q0051_NQueensBestFromCtCI {
     }
 
     public List<List<String>> solveNQueens(int boardSize) {
-        //ArrayList<Integer[]> results = new ArrayList<>();
         List<List<String>> results = new ArrayList<>();
         Integer[] columns = new Integer[boardSize];
         clear(columns, boardSize);

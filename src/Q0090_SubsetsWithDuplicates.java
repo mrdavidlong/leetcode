@@ -71,7 +71,9 @@ public class Q0090_SubsetsWithDuplicates {
     private void backtrack(List<List<Integer>> list, List<Integer> tempList, int [] nums, int start){
         list.add(new ArrayList<>(tempList));
         for(int i = start; i < nums.length; i++){
-            if(i > start && nums[i] == nums[i-1]) continue; // skip duplicates
+            if(i > start && nums[i] == nums[i-1]) {
+                continue; // skip duplicates
+            }
             tempList.add(nums[i]);
             backtrack(list, tempList, nums, i + 1);
             tempList.remove(tempList.size() - 1);

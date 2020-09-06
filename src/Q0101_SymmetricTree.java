@@ -55,6 +55,14 @@ public class Q0101_SymmetricTree {
         t3.left = t6;
         t3.right = t7;
 
+/*
+    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+*/
+
         boolean isSym = sol.isSymmetric(t1);
 
         TreeNode s1 = new TreeNode(1);
@@ -68,6 +76,13 @@ public class Q0101_SymmetricTree {
         s2.right = s4;
         s3.right = s5;
 
+/*
+    1
+   / \
+  2   2
+   \   \
+   3    3
+*/
         boolean isSym2 = sol.isSymmetric(s1);
 
     }

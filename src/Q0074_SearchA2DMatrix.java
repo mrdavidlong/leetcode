@@ -39,17 +39,17 @@ public class Q0074_SearchA2DMatrix {
 
         int begin = 0, end = row_num * col_num - 1;
 
-        while(begin <= end){
+        while (begin <= end) {
             int mid = (begin + end) / 2;
             int mid_value = matrix[mid/col_num][mid%col_num];
 
             if (mid_value == target) {
                 return true;
-            } else if(mid_value < target){
+            } else if (mid_value < target){
                 //Should move a bit further, otherwise dead loop.
-                begin = mid+1;
+                begin = mid + 1;
             } else {
-                end = mid-1;
+                end = mid - 1;
             }
         }
         return false;

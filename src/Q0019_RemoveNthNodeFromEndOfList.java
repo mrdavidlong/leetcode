@@ -70,9 +70,7 @@ public ListNode removeNthFromEndByDavid(ListNode head, int n) {
     private static void printNode(ListNode head) {
         if (head != null) {
             System.out.print(head.val + " ");
-            if (head.next != null) {
-                printNode(head.next);
-            }
+            printNode(head.next);
         }
     }
 

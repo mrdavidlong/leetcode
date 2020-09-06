@@ -13,7 +13,6 @@ public class Q0215_KthLargestElementInAnArray {
 
     public int findKthLargestWithPriorityQueue(int[] nums, int k) {
         PriorityQueue<Integer> pq = new PriorityQueue<>(); // 小顶堆
-        //PriorityQueue<Integer> maxHeap = new PriorityQueue<>( Collections.reverseOrder());
 
         for (int val : nums) {
             pq.add(val);

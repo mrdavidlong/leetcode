@@ -6,7 +6,7 @@ public class Q0078_Subsets {
     //https://leetcode.com/problems/permutations/discuss/18239/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partioning)
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> list = new ArrayList<>();
-        Arrays.sort(nums);
+        //Arrays.sort(nums);
         backtrack(list, new ArrayList<>(), nums, 0);
         return list;
     }

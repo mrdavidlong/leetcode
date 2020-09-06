@@ -23,7 +23,7 @@ public class Q0338_CountingBits {
     // f[i >> 1] is number of 1's but not counting the last digit
     public int[] countBits(int num) {
         int[] f = new int[num + 1];
-        for (int i=1; i<=num; i++) {
+        for (int i = 1; i <= num; i++) {
             f[i] = f[i >> 1] + (i & 1);
         }
         return f;

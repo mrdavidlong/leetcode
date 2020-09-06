@@ -141,7 +141,7 @@ public class Q0239_SlidingWindowMaximum {
             max_left[i] = (i % w == 0) ? in[i] : Math.max(max_left[i - 1], in[i]);
 
             final int j = in.length - i - 1;
-            //max_right[j] = (j % w == 0) ? in[j] : Math.max(max_right[j + 1], in[j]);
+            max_right[j] = (j % w == 0) ? in[j] : Math.max(max_right[j + 1], in[j]);
             max_right[j] = (j % w == w -1) ? in[j] : Math.max(max_right[j + 1], in[j]);
         }
 

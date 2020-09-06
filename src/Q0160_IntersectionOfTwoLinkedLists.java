@@ -48,12 +48,13 @@ public class Q0160_IntersectionOfTwoLinkedLists {
         a2.next = c1;
         c1.next = c2;
         c2.next = c3;
+
         b1.next = b2;
         b2.next = b3;
-        //b3.next = c1;
+        b3.next = c1;
 
         printList(a1);
-        printList(a2);
+        printList(b2);
 
         ListNode intersect = sol.getIntersectionNode(a1, b1);
 

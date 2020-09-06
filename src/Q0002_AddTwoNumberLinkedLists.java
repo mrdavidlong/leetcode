@@ -87,5 +87,10 @@ public class Q0002_AddTwoNumberLinkedLists {
         System.out.print("result2: ");
         result2.print();
         System.out.println();
+
+        ListNode result3 = addLists(new ListNode(8), new ListNode(7), 0);
+        System.out.print("result3: ");
+        result3.print();
+        System.out.println();
     }
 }

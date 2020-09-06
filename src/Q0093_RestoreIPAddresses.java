@@ -47,6 +47,7 @@ public class Q0093_RestoreIPAddresses {
 //        Input: "25525511135"
 //        Output: ["255.255.11.135", "255.255.111.35"]
         String ipString = "25525511135";
+        //String ipString = "20525511135";
         List<String> ipList = sol.restoreIpAddresses(ipString);
         for (String ip : ipList) {
             System.out.println(ip);

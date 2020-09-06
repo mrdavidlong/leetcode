@@ -66,6 +66,14 @@ public class Q0098_ValidateBinarySearchTree {
         t4.left = t3;
         t4.right = t6;
 
+        /*
+        5
+       / \
+      1   4
+          /\
+         3  6
+         */
+
         boolean isValid2 = sol.isValidBST(t5);
 
     }

@@ -48,7 +48,7 @@ public class Q0031_NextPermutation {
 
     public static void main(String[] args) {
         Q0031_NextPermutation sol = new Q0031_NextPermutation();
-        int[] nums = {1,5,8,4,7,6,5,3,1};
+        int[] nums = {1,2,4,3};
         sol.nextPermutation(nums);
         int i = 0;
     }

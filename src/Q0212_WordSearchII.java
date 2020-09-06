@@ -32,7 +32,7 @@ public class Q0212_WordSearchII {
         boolean[][] visited = new boolean[board.length][board[0].length];
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                dfs (board, i, j, root, visited, res);
+                dfs(board, i, j, root, visited, res);
             }
         }
         return new ArrayList<>(res);

@@ -69,6 +69,7 @@ public class Q0003_LengthOfLongestNonRepeatSubstring {
         Q0003_LengthOfLongestNonRepeatSubstring sol = new Q0003_LengthOfLongestNonRepeatSubstring();
 
         String s = "abcabcbb";
+        //String s = "bacabcbb";
         int result = sol.getLengthOfLongestSubstring(s);
         System.out.println("result: " + result);
 

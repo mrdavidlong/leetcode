@@ -77,10 +77,25 @@ public class Q0448_FindAllNumbersDisappearedInAnArray {
         nums[j] = tmp;
     }
 
+    public List<Integer> findDisappearedNumbersWithExtraMemory(int[] nums) {
+        boolean[] found = new boolean[nums.length+1];
+        for (int i = 0; i < nums.length; i++) {
+            found[nums[i]] = true;
+        }
+        List<Integer> missing = new ArrayList<>();
+        for (int i = 1; i < found.length; i++) {
+            if (!found[i]) {
+                missing.add(i);
+            }
+        }
+        return missing;
+    }
+
 
     public static void main(String[] args) {
         Q0448_FindAllNumbersDisappearedInAnArray sol = new Q0448_FindAllNumbersDisappearedInAnArray();
-        List<Integer> disappearedNumbers = sol.findDisappearedNumbers(new int[] {4,3,2,7,8,2,3,1});
-        List<Integer> disappearedNumbers2 = sol.findDisappearedNumbers2(new int[]{4, 3, 2, 7, 8, 2, 3, 1});
+        List<Integer> disappearedNumbers = sol.findDisappearedNumbers(new int[] {4, 3, 2, 7, 8, 2, 3, 1});
+        List<Integer> disappearedNumbers2 = sol.findDisappearedNumbers2(new int[] {4, 3, 2, 7, 8, 2, 3, 1});
+        List<Integer> disappearedNumbers3 = sol.findDisappearedNumbersWithExtraMemory(new int[] {4, 3, 2, 7, 8, 2, 3, 1});
     }
 }

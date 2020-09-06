@@ -28,18 +28,17 @@ import java.util.Queue;
 public class Q0102_BinaryTreeLevelOrderTraversal {
     // https://leetcode.com/problems/binary-tree-level-order-traversal/discuss/33450/Java-solution-with-a-queue-used
     public List<List<Integer>> levelOrder(TreeNode root) {
-        Queue<TreeNode> queue = new LinkedList<>();
         List<List<Integer>> wrapList = new LinkedList<>();
-
         if (root == null) return wrapList;
 
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
             int levelSize = queue.size();
             List<Integer> subList = new LinkedList<>();
-            //for (int i = 0; i < levelSize; i++) {
+
             while (levelSize-- > 0) {
-                 TreeNode curNode = queue.poll();
+                TreeNode curNode = queue.poll();
                 subList.add(curNode.val);
                 if (curNode.left != null) queue.offer(curNode.left);
                 if (curNode.right != null) queue.offer(curNode.right);
@@ -59,9 +58,25 @@ public class Q0102_BinaryTreeLevelOrderTraversal {
 
         t3.left = t9;
         t3.right = t20;
-        t9.left = t15;
+        t20.left = t15;
         t20.right = t7;
 
+/*
+    3
+   / \
+  9  20
+    /  \
+   15   7
+*/
         List<List<Integer>> resultList = sol.levelOrder(t3);
+
+/*
+[
+  [3],
+  [9,20],
+  [15,7]
+]
+ */
+
     }
 }

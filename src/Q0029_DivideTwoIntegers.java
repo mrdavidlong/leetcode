@@ -86,6 +86,10 @@ public class Q0029_DivideTwoIntegers {
         int dividend2 = -2147483648, divisor2 = -1;
         int quotient2 = sol.divide(dividend2, divisor2);
         System.out.println("quotient2 = " + quotient2);
-        
+
+        int dividend3 = -2147483647, divisor3 = 1;
+        int quotient3 = sol.divide(dividend3, divisor3);
+        System.out.println("quotient3 = " + quotient3);
+
     }
 }

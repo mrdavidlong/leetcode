@@ -20,7 +20,7 @@
  */
 public class Q0287_FindTheDuplicateNumber {
 
-    // https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20题解.md#数组与矩阵
+//    // https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20题解.md#数组与矩阵
     public int findDuplicate(int[] nums) {
         int l = 1, h = nums.length - 1;
         while (l <= h) {
@@ -33,6 +33,19 @@ public class Q0287_FindTheDuplicateNumber {
             else l = mid + 1;
         }
         return l;
+    }
+
+    public int findDuplicateIfDupOnlyHappensOnce(int[] nums) {
+        int sumWithoutDup = 0;
+        for (int i = 1; i <= nums.length - 1; i++) {
+            sumWithoutDup += i;
+        }
+
+        int sumWithDup = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sumWithDup += nums[i];
+        }
+        return sumWithDup - sumWithoutDup;
     }
 
     public int findDuplicate2(int[] nums) {
@@ -53,8 +66,9 @@ public class Q0287_FindTheDuplicateNumber {
         Q0287_FindTheDuplicateNumber sol = new Q0287_FindTheDuplicateNumber();
         int dup = sol.findDuplicate(new int[] {1,3,4,2,2});
         int dup2 = sol.findDuplicate(new int[] {3,1,3,4,2});
+        int dup3 = sol.findDuplicate(new int[] {2,2,2,2});
 
-        int dup3 = sol.findDuplicate2(new int[] {1,3,4,2,2});
-        int dup4 = sol.findDuplicate2(new int[] {3,1,3,4,2});
+        int dup4 = sol.findDuplicate2(new int[] {1,3,4,2,2});
+        int dup5 = sol.findDuplicate2(new int[] {3,1,3,4,2});
     }
 }

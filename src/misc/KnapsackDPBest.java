@@ -6,8 +6,10 @@ package misc;
 public class KnapsackDPBest {
     public static int knapsack(int W, int N, int[] weights, int[] values) {
         int[] dp = new int[W + 1];
-        for (int i = 1; i <= N; i++) {
-            int w = weights[i - 1], v = values[i - 1];
+//        for (int i = 1; i <= N; i++) {
+//            int w = weights[i - 1], v = values[i - 1];
+        for (int i = 0; i < N; i++) {
+            int w = weights[i], v = values[i];
             for (int j = W; j >= 1; j--) {
                 if (j >= w) {
                     dp[j] = Math.max(dp[j], dp[j - w] + v);

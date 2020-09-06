@@ -78,7 +78,7 @@ Move to the (l-n%l)th node
 
         // get the new head
         ListNode newHead = head;
-        ListNode newTail = head;
+        ListNode newTail = head; // newTail is the previous node before newHead
         for (int i = 0; i < newHeadIndex; i++) {
             newHead = newHead.next;
             if (i > 0) newTail = newTail.next;
@@ -104,6 +104,6 @@ Move to the (l-n%l)th node
         l3.next = l4;
         l4.next = l5;
 
-        ListNode newList = sol.rotateRight(l1, 2);
+        ListNode newList = sol.rotateRight(l1, 1);
     }
 }
