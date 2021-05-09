@@ -35,6 +35,7 @@ public class Q0077_Combinations {
         }
 
         for (int i = start; i <= n - k + 1; i++) {  // cut out the branches
+        //for (int i = start; i <= n ; i++) {  // cut out the branches
             tempList.add(i);
             backtracking(n, i + 1, k - 1, result, tempList);
             tempList.remove(tempList.size() - 1);

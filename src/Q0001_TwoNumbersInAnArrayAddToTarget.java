@@ -57,9 +57,9 @@ public class Q0001_TwoNumbersInAnArrayAddToTarget {
         //int[] answer = twoSum(a, 4);
         int[] a =  {3,-1,7,2,6};
         int[] answer = twoSum(a, 5);
-        System.out.println("answer: " + answer[0] + ", " +  answer[1]);
+        System.out.println("answer index: " + answer[0] + ", " +  answer[1]);
 
         int[] answer2 = twoSumNoExtraSpace(a, 5);
-        System.out.println("answer2: " + answer2[0] + ", " +  answer[1]);
+        System.out.println("answer2 values: " + answer2[0] + ", " +  answer[1]);
     }
 }

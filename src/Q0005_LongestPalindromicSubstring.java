@@ -2,40 +2,6 @@
  * Created by davidlong on 6/16/18.
  */
 public class Q0005_LongestPalindromicSubstring {
-
-//    public static boolean isPalindrome(char[] a, int start, int end) {
-//        while (start <= end) {
-//            if (a[start] != a[end]) {
-//                return false;
-//            }
-//            start++;
-//            end--;
-//        }
-//        return true;
-//    }
-//
-//    public static String longestPalindrome(String s) {
-//
-//        int maxLength = -1;
-//        int maxStart = -1;
-//        int maxEnd = -1;
-//        char[] a = s.toCharArray();
-//        for (int i = 0; i < a.length; i++) {
-//            for (int j = i; j < a.length; j++) {
-//                if (isPalindrome(a, i, j)) {
-//                    int currentLength = j-i+1;
-//                    if (currentLength > maxLength) {
-//                        maxLength = currentLength;
-//                        maxStart = i;
-//                        maxEnd = j;
-//                    }
-//                }
-//            }
-//        }
-//
-//        return s.substring(maxStart, maxEnd + 1);
-//    }
-
     // https://leetcode.com/problems/longest-palindromic-substring/solution/
     // time: O(n^2)
     public static String longestPalindrome(String s) {
@@ -67,9 +33,6 @@ public class Q0005_LongestPalindromicSubstring {
         String input = "babad";
         String output = longestPalindrome(input);
         System.out.println("output = " + output);
-
-//        String outputBetter = longestPalindrome_OfficialSolution(input);
-//        System.out.println("outputBetter = " + outputBetter);
     }
 
 

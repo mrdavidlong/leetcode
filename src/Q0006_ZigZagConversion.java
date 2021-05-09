@@ -30,61 +30,6 @@ import java.util.List;
  P     I
  */
 public class Q0006_ZigZagConversion {
-//    private static String toHorizontal(char[][] matrix) {
-//        StringBuilder sb = new StringBuilder();
-//        for (int r = 0; r < matrix.length; r++) {
-//            for (int c = 0; c < matrix[0].length; c++) {
-//                if (matrix[r][c] != 0) {
-//                    sb.append(matrix[r][c]);
-//                }
-//            }
-//        }
-//        return sb.toString();
-//    }
-//
-//
-//    public static String convertByDavid(String s, int numRows) {
-//        char[][] matrix = new char[numRows][s.length()];
-//        if (s.isEmpty()) return "";
-//
-//        matrix[0][0] = s.charAt(0);
-//
-//        int i = 1;
-//        int row = 1;
-//        int col = 0;
-//        char c;
-//        while (i < s.length()) {
-//
-//            // go down
-//            while (row < numRows && i < s.length()) {
-//                c = s.charAt(i);
-//                matrix[row][col] = c;
-//                i++;
-//                row++;
-//            }
-//
-//            //rewind
-//            row = row - 2;
-//            col++;
-//
-//            // go up right;
-//            while (row >= 0 && i < s.length()) {
-//                c = s.charAt(i);
-//                matrix[row][col] = c;
-//                i++;
-//                row--;
-//                col++;
-//            }
-//
-//            //rewind
-//            row = row + 2;
-//            col--;
-//        }
-//
-//
-//        return toHorizontal(matrix);
-//    }
-
     public static String convert(String s, int numRows) {
         if (numRows == 1) return s;
 
@@ -108,9 +53,6 @@ public class Q0006_ZigZagConversion {
 
     public static void main(String[] args) {
         String input = "PAYPALISHIRING";
-//        String outputByDavid = convertByDavid(input, 4);
-//        System.out.println("convertByDavid = " + outputByDavid);
-
         String output = convert(input, 4);
         System.out.println("convert = " + output);
     }

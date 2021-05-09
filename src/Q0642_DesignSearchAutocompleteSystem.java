@@ -117,7 +117,7 @@ public class Q0642_DesignSearchAutocompleteSystem {
             if (t.branches[26] != null)
                 traverse(t.branches[26], s + ' ', list);
         }
-        
+
         Trie root;
         public AutocompleteSystem(String[] sentences, int[] times) {
             root = new Trie();

@@ -2,24 +2,23 @@
  * Created by davidlong on 6/17/18.
  */
 public class Q0007_ReverseInteger {
+    public static int reverse2(int input) {
+        //if (input == 0 || input == Integer.MIN_VALUE) return 0;
 
-//    public static int reverse(int input) {
-//        //if (input == 0 || input == Integer.MIN_VALUE) return 0;
-//
-//        long result = 0;
-//        while (input  != 0) {
-//            int digit = input % 10;
-//            input /= 10;
-//
-//            result = result * 10 + digit;
-//        }
-//
-//        if (result > Integer.MAX_VALUE || result < Integer.MIN_VALUE) {
-//            return 0;
-//        } else {
-//            return (int)result;
-//        }
-//    }
+        long result = 0;
+        while (input  != 0) {
+            int digit = input % 10;
+            input /= 10;
+
+            result = result * 10 + digit;
+        }
+
+        if (result > Integer.MAX_VALUE || result < Integer.MIN_VALUE) {
+            return 0;
+        } else {
+            return (int)result;
+        }
+    }
 
     // https://leetcode.com/problems/reverse-integer/solution/
     public static int reverse(int x) {

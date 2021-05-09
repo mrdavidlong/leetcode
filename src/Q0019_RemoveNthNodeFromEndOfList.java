@@ -86,7 +86,7 @@ public ListNode removeNthFromEndByDavid(ListNode head, int n) {
         n4.next = n5;
 
         Q0019_RemoveNthNodeFromEndOfList q = new Q0019_RemoveNthNodeFromEndOfList();
-        ListNode resultNode = q.removeNthFromEnd(n1, 2);
+        ListNode resultNode = q.removeNthFromEnd(n1, 7);
         printNode(resultNode);
 
     }

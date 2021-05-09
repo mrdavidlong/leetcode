@@ -124,9 +124,9 @@ The idea is to sort an input array and then run through all indices of a possibl
 
     public static void main(String[] args) {
         Q0015_3Sum q = new Q0015_3Sum();
-        int[] input = new int[] {-1, 0, 1, 2, -1, -4};
+        //int[] input = new int[] {-1, 0, 1, 2, -1, -4};
         // sorted: {-4, -1, -1, 0, 1, 2};
-        //int[] input = new int[] {-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6};
+        int[] input = new int[] {-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6};
         List<List<Integer>> lists = q.threeSum(input);
         for (List<Integer> list : lists) {
             System.out.print("list=");

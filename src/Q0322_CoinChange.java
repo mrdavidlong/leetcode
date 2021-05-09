@@ -70,7 +70,7 @@ public class Q0322_CoinChange {
         // we use Integer.MAX_VALUE - 1, because we want to avoid overflow when doing minimum[i - coin] + 1
         Arrays.fill(minimum, Integer.MAX_VALUE - 1);
         minimum[0] = 0;
-        //Arrays.sort(coins);
+        Arrays.sort(coins);
         for (int coin : coins) {
             for (int i = coin; i <= amount; i++) {
                 minimum[i] = Math.min(minimum[i], minimum[i - coin] + 1);
