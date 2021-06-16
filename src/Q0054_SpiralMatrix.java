@@ -35,47 +35,73 @@ public class Q0054_SpiralMatrix {
     Any comments greatly appreciated.
     */
 
+//    public List<Integer> spiralOrder(int[][] matrix) {
+//        List<Integer> res = new ArrayList<Integer>();
+//        if (matrix.length == 0) {
+//            return res;
+//        }
+//        int rowBegin = 0;
+//        int rowEnd = matrix.length-1;
+//        int colBegin = 0;
+//        int colEnd = matrix[0].length - 1;
+//
+//        while (rowBegin <= rowEnd && colBegin <= colEnd) {
+//            // Traverse Right
+//            for (int i = colBegin; i <= colEnd; i++) {
+//                res.add(matrix[rowBegin][i]);
+//            }
+//            rowBegin++;
+//
+//            // Traverse Down
+//            for (int i = rowBegin; i <= rowEnd; i++) {
+//                res.add(matrix[i][colEnd]);
+//            }
+//            colEnd--;
+//
+//            if (rowBegin <= rowEnd) {
+//                // Traverse Left
+//                for (int i = colEnd; i >= colBegin; i--) {
+//                    res.add(matrix[rowEnd][i]);
+//                }
+//            }
+//            rowEnd--;
+//
+//            if (colBegin <= colEnd) {
+//                // Traver Up
+//                for (int i = rowEnd; i >= rowBegin; i--) {
+//                    res.add(matrix[i][colBegin]);
+//                }
+//            }
+//            colBegin++;
+//        }
+//
+//        return res;
+//    }
+
+    //https://leetcode.com/problems/spiral-matrix/solution/
     public List<Integer> spiralOrder(int[][] matrix) {
-        List<Integer> res = new ArrayList<Integer>();
-        if (matrix.length == 0) {
-            return res;
+        List ans = new ArrayList();
+        if (matrix.length == 0) return ans;
+        int R = matrix.length, C = matrix[0].length;
+        boolean[][] visited = new boolean[R][C];
+        int[] dr = {0, 1, 0, -1};
+        int[] dc = {1, 0, -1, 0};
+        int r = 0, c = 0, di = 0;
+        for (int i = 0; i < R * C; i++) {
+            ans.add(matrix[r][c]);
+            visited[r][c] = true;
+            int nextR = r + dr[di];
+            int nextC = c + dc[di];
+            if (0 <= nextR && nextR < R && 0 <= nextC && nextC < C && !visited[nextR][nextC]){
+                r = nextR;
+                c = nextC;
+            } else {
+                di = (di + 1) % 4;
+                r += dr[di];
+                c += dc[di];
+            }
         }
-        int rowBegin = 0;
-        int rowEnd = matrix.length-1;
-        int colBegin = 0;
-        int colEnd = matrix[0].length - 1;
-
-        while (rowBegin <= rowEnd && colBegin <= colEnd) {
-            // Traverse Right
-            for (int i = colBegin; i <= colEnd; i++) {
-                res.add(matrix[rowBegin][i]);
-            }
-            rowBegin++;
-
-            // Traverse Down
-            for (int i = rowBegin; i <= rowEnd; i++) {
-                res.add(matrix[i][colEnd]);
-            }
-            colEnd--;
-
-            if (rowBegin <= rowEnd) {
-                // Traverse Left
-                for (int i = colEnd; i >= colBegin; i--) {
-                    res.add(matrix[rowEnd][i]);
-                }
-            }
-            rowEnd--;
-
-            if (colBegin <= colEnd) {
-                // Traver Up
-                for (int i = rowEnd; i >= rowBegin; i--) {
-                    res.add(matrix[i][colBegin]);
-                }
-            }
-            colBegin++;
-        }
-
-        return res;
+        return ans;
     }
 
     public static void main(String[] args) {
@@ -95,5 +121,5 @@ public class Q0054_SpiralMatrix {
         };
         List<Integer> spiralList2 = sol.spiralOrder(matrix2);
     }
-    
+
 }

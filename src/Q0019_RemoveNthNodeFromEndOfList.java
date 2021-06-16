@@ -1,4 +1,5 @@
 import common.ListNode;
+
 /**
  * Created by davidlong on 6/30/18.
  * Given linked list: 1->2->3->4->5, and n = 2.
@@ -7,39 +8,39 @@ import common.ListNode;
 
  */
 public class Q0019_RemoveNthNodeFromEndOfList {
-public ListNode removeNthFromEndByDavid(ListNode head, int n) {
-    if (head == null) throw new IllegalArgumentException("linked list cannot be null");
 
-    ListNode fast = head;
-    for (int i = 1; i < n; i++) {
-        if (fast.next != null) fast = fast.next;
-        else throw new IllegalArgumentException("n cannot be less than the length of the linked list");
+    public ListNode removeNthFromEndByDavid(ListNode head, int n) {
+        if (head == null) throw new IllegalArgumentException("linked list cannot be null");
+
+        ListNode fast = head;
+        for (int i = 1; i <= n; i++) {
+            if (fast != null) fast = fast.next;
+            else throw new IllegalArgumentException("n cannot be less than the length of the linked list");
+        }
+
+        // delete the head
+        if (fast == null) {
+            return head.next;
+        }
+
+        ListNode slow = head;
+        while (fast.next != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+        slow.next = slow.next.next;
+        return head;
     }
 
-    // delete the head
-    if (fast.next == null) {
-        return head.next;
-    }
-
-    ListNode slow = head;
-    ListNode prev = null;
-    while (fast.next != null) {
-        prev = slow;
-        fast = fast.next;
-        slow = slow.next;
-    }
-
-    prev.next = slow.next;
-    return head;
-}
-
-    public ListNode removeNthFromEnd2(ListNode head, int n) {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode first = dummy;
         ListNode second = dummy;
         // Advances first pointer so that the gap between first and second is n nodes apart
         for (int i = 1; i <= n + 1; i++) {
+            if (first == null) throw new IllegalArgumentException("n is larger than the length of linked list");
             first = first.next;
         }
         // Move first to the end, maintaining the gap
@@ -52,7 +53,7 @@ public ListNode removeNthFromEndByDavid(ListNode head, int n) {
     }
 
     // https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20题解.md#链表
-    public ListNode removeNthFromEnd(ListNode head, int n) {
+    public ListNode removeNthFromEnd2(ListNode head, int n) {
         ListNode fast = head;
         while (n-- > 0) {
             fast = fast.next;
@@ -86,7 +87,9 @@ public ListNode removeNthFromEndByDavid(ListNode head, int n) {
         n4.next = n5;
 
         Q0019_RemoveNthNodeFromEndOfList q = new Q0019_RemoveNthNodeFromEndOfList();
-        ListNode resultNode = q.removeNthFromEnd(n1, 7);
+        //ListNode resultNode = q.removeNthFromEnd(n1, 5);
+        //ListNode resultNode = q.removeNthFromEndByDavid(n1, 2);
+        ListNode resultNode = q.removeNthFromEndByDavid(n1, 5);
         printNode(resultNode);
 
     }

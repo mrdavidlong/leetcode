@@ -43,10 +43,28 @@ public class Q0053_MaximumSubarray {
         return maxSum;
     }
 
+    public int maxSubArrayOfficialSolution(int[] nums) {
+        // Initialize our variables using the first element.
+        int currentSubarray = nums[0];
+        int maxSubarray = nums[0];
+
+        // Start with the 2nd element since we already used the first one.
+        for (int i = 1; i < nums.length; i++) {
+            int num = nums[i];
+            // If current_subarray is negative, throw it away. Otherwise, keep adding to it.
+            currentSubarray = Math.max(num, currentSubarray + num);
+            maxSubarray = Math.max(maxSubarray, currentSubarray);
+        }
+
+        return maxSubarray;
+    }
+
     public static void main(String[] args) {
         Q0053_MaximumSubarray sol = new Q0053_MaximumSubarray();
         int maxSubarray1 = sol.maxSubArray(new int[] {-2,1,-3,4,-1,2,1,-5,4});
         int maxSubarray2 = sol.maxSubArray(new int[] {-20,-10-5});
         int maxSubarray3 = sol.maxSubArray2(new int[] {-20,-10-5});
+        int maxSubarray4 = sol.maxSubArrayOfficialSolution(new int[] {-2,1,-3,4,-1,2,1,-5,4});
+        int maxSubarray5 = sol.maxSubArrayOfficialSolution(new int[] {-20,-10-5});
     }
 }

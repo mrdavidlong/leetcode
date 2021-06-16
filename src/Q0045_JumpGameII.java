@@ -19,17 +19,17 @@
  You can assume that you can always reach the last index.
  */
 public class Q0045_JumpGameII {
-    // https://leetcode.com/problems/jump-game-ii/discuss/18014/Concise-O(n)-one-loop-JAVA-solution-based-on-Greedy
-    /*
-    The main idea is based on greedy. Let's say the range of the current jump is [curBegin, curEnd], curFarthest is the farthest point that all points in [curBegin, curEnd] can reach. Once the current point reaches curEnd, then trigger another jump, and set the new curEnd with curFarthest, then keep the above steps, as the following:
-     */
+    //https://leetcode.com/problems/jump-game-ii/solution/
     public int jump(int[] nums) {
-        int jumps = 0, curEnd = 0, curFarthest = 0;
+        int jumps = 0, currentJumpEnd = 0, farthest = 0;
         for (int i = 0; i < nums.length - 1; i++) {
-            curFarthest = Math.max(curFarthest, i + nums[i]);
-            if (i == curEnd) {
+            // we continuously find the how far we can reach in the current jump
+            farthest = Math.max(farthest, i + nums[i]);
+            // if we have come to the end of the current jump,
+            // we need to make another jump
+            if (i == currentJumpEnd) {
                 jumps++;
-                curEnd = curFarthest;
+                currentJumpEnd = farthest;
             }
         }
         return jumps;

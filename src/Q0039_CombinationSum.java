@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -56,7 +57,6 @@ public class Q0039_CombinationSum {
     //https://leetcode.com/problems/permutations/discuss/18239/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partioning)
     public List<List<Integer>> combinationSum(int[] nums, int target) {
         List<List<Integer>> list = new ArrayList<>();
-        Arrays.sort(nums);
         backtrack(list, new ArrayList<>(), nums, target, 0);
         return list;
     }
@@ -65,12 +65,45 @@ public class Q0039_CombinationSum {
         if (remain < 0) return;
         else if (remain == 0) list.add(new ArrayList<>(tempList));
         else {
-            for(int i = start; i < nums.length; i++){
+            for (int i = start; i < nums.length; i++) {
                 tempList.add(nums[i]);
                 backtrack(list, tempList, nums, remain - nums[i], i); // not i + 1 because we can reuse same elements
                 tempList.remove(tempList.size() - 1);
             }
         }
+    }
+
+    /////////  Official Solution
+    protected void backtrack(
+            int remain,
+            LinkedList<Integer> comb,
+            int start, int[] candidates,
+            List<List<Integer>> results) {
+
+        if (remain == 0) {
+            // make a deep copy of the current combination
+            results.add(new ArrayList<Integer>(comb));
+            return;
+        } else if (remain < 0) {
+            // exceed the scope, stop exploration.
+            return;
+        }
+
+        for (int i = start; i < candidates.length; ++i) {
+            // add the number into the combination
+            comb.add(candidates[i]);
+            this.backtrack(remain - candidates[i], comb, i, candidates, results);
+            // backtrack, remove the number from the combination
+            comb.removeLast();
+        }
+    }
+
+    public List<List<Integer>> combinationSumOfficialSolution(int[] candidates, int target) {
+        List<List<Integer>> results = new ArrayList<List<Integer>>();
+        LinkedList<Integer> comb = new LinkedList<Integer>();
+
+        this.backtrack(target, comb, 0, candidates, results);
+        return results;
     }
 
     public static void main(String[] args) {

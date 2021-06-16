@@ -61,7 +61,7 @@ public class Q0080_RemoveDuplicatesFromSortedArrayII {
 //        return j;
 //    }
     // https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/discuss/27987/Short-and-Simple-Java-solution-(easy-to-understand)
-    public int removeDuplicates(int[] nums) {
+    public int removeDuplicates1(int[] nums) {
         int i = 0;
         for (int n : nums)
             if (i < 2 || n > nums[i - 2])
@@ -69,7 +69,7 @@ public class Q0080_RemoveDuplicatesFromSortedArrayII {
         return i;
     }
 
-    public int removeDuplicatesNoDupes(int[] nums) {
+    public int removeDuplicatesNoDupes2(int[] nums) {
         int i = 0;
         for(int n : nums)
             if(i < 1 || n > nums[i - 1])
@@ -77,13 +77,41 @@ public class Q0080_RemoveDuplicatesFromSortedArrayII {
         return i;
     }
 
+    // https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/solution/
+    public int removeDuplicates(int[] nums) {
+        // Initialize the counter and the second pointer.
+        int j = 1, count = 1;
+        // Start from the second element of the array and process
+        // elements one by one.
+        for (int i = 1; i < nums.length; i++) {
+            // If the current element is a duplicate, increment the count.
+            if (nums[i] == nums[i - 1]) {
+                count++;
+            } else {
+                // Reset the count since we encountered a different element
+                // than the previous one.
+                count = 1;
+            }
+            // For a count <= 2, we copy the element over thus
+            // overwriting the element at index "j" in the array
+            if (count <= 2) {
+                nums[j++] = nums[i];
+            }
+        }
+        return j;
+    }
+
     public static void main(String[] args) {
         Q0080_RemoveDuplicatesFromSortedArrayII sol = new Q0080_RemoveDuplicatesFromSortedArrayII();
-        int len = sol.removeDuplicates(new int[] {1,1,1,2,2,3});
-        int len2 = sol.removeDuplicates(new int[] {0,0,1,1,1,1,2,3,3});
+        int[] intArray1 = new int[] {1,1,1,2,2,3};
+        int len = sol.removeDuplicates(intArray1);
+        int[] intArray2 = new int[] {0,0,1,1,1,1,2,3,3};
+        int len2 = sol.removeDuplicates(intArray2);
 
-        int len3 = sol.removeDuplicatesNoDupes(new int[] {1,1,1,2,2,3});
-        int len4 = sol.removeDuplicatesNoDupes(new int[] {0,0,1,1,1,1,2,3,3});
+        int[] intArray3 = new int[] {1,1,1,2,2,3};
+        int len3 = sol.removeDuplicates(intArray3);
+        int[] intArray4 = new int[] {0,0,1,1,1,1,2,3,3};
+        int len4 = sol.removeDuplicates(intArray4);
 
     }
 }

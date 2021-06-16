@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  *
  * https://leetcode.com/problems/unique-paths/description/
@@ -71,17 +73,32 @@ Please give any suggestions on improving the code.
 //    }
 
     // https://leetcode.com/problems/unique-paths/discuss/22980/Clean-and-simple-DP-java
-    public int uniquePaths(int m, int n) {
-        int[][] grid = new int[m][n];
-        for (int i = 0; i < m; i++){
-            for (int j = 0; j < n; j++){
+    public int uniquePaths(int r, int c) {
+        int[][] grid = new int[r][c];
+        for (int i = 0; i < r; i++){
+            for (int j = 0; j < c; j++){
                 if (i == 0 || j == 0)
                     grid[i][j] = 1;
                 else
                     grid[i][j] = grid[i][j-1] + grid[i-1][j];
             }
         }
-        return grid[m-1][n-1];
+        return grid[r-1][c-1];
+    }
+
+    // https://leetcode.com/problems/unique-paths/solution/
+    public int uniquePathsOfficialSolution(int m, int n) {
+        int[][] d = new int[m][n];
+
+        for(int[] arr : d) {
+            Arrays.fill(arr, 1);
+        }
+        for(int col = 1; col < m; ++col) {
+            for(int row = 1; row < n; ++row) {
+                d[col][row] = d[col - 1][row] + d[col][row - 1];
+            }
+        }
+        return d[m - 1][n - 1];
     }
 
     // BEST

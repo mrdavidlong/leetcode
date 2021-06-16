@@ -8,33 +8,6 @@ import java.util.Stack;
  */
 public class Q0020_ValidParentheses {
 
-private static Map<Character, Character> matchingParentheses = new HashMap<Character, Character>() {
-    {
-        put('(', ')');
-        put('[', ']');
-        put('{', '}');
-    }
-};
-
-    public boolean isValidByDavid(String s) {
-        LinkedList stack = new LinkedList();
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (c == '(' || c == '[' || c == '{') {
-                stack.push(c);
-            } else if (c == ')' || c == ']' || c == '}') {
-                if (stack.isEmpty()) return false;
-
-                char stackTop = (char)stack.pop();
-                if (matchingParentheses.get(stackTop) != c) {
-                    return false;
-                }
-            }
-        }
-
-        return stack.isEmpty();
-    }
-
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
         for (char c : s.toCharArray()) {
@@ -46,28 +19,6 @@ private static Map<Character, Character> matchingParentheses = new HashMap<Chara
                 stack.push(']');
             else if (stack.isEmpty() || stack.pop() != c)
                 return false;
-        }
-        return stack.isEmpty();
-    }
-
-    // https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20题解.md#栈和队列
-    public boolean isValid2(String s) {
-        Stack<Character> stack = new Stack<>();
-        for (char c : s.toCharArray()) {
-            if (c == '(' || c == '{' || c == '[') {
-                stack.push(c);
-            } else {
-                if (stack.isEmpty()) {
-                    return false;
-                }
-                char cStack = stack.pop();
-                boolean b1 = c == ')' && cStack != '(';
-                boolean b2 = c == ']' && cStack != '[';
-                boolean b3 = c == '}' && cStack != '{';
-                if (b1 || b2 || b3) {
-                    return false;
-                }
-            }
         }
         return stack.isEmpty();
     }
@@ -93,9 +44,5 @@ private static Map<Character, Character> matchingParentheses = new HashMap<Chara
         String input5 = "[";
         boolean valid5 = q.isValid(input5);
         System.out.println("valid5 = " + valid5);
-
-        String input6 = "{[abc]}";
-        boolean valid6 = q.isValidByDavid(input6);
-        System.out.println("valid6 = " + valid6);
     }
 }

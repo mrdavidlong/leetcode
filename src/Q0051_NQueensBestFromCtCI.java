@@ -43,7 +43,7 @@ public class Q0051_NQueensBestFromCtCI {
         } else {
             for (int col = 0; col < boardSize; col++) {
                 if (checkValid(columns, row, col)) {
-                    columns[row] = col;	// Place queen
+                    columns[row] = col;	// Place queen, backtracking with overriding the values
                     placeQueens(row + 1, columns, results, boardSize);
                 }
             }

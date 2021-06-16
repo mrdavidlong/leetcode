@@ -4,6 +4,7 @@ import common.ListNode;
  */
 public class Q0024_SwapNodesInPairs {
 
+    // this is not the right solution, since it's swapping values, not the nodes
     public ListNode swapPairsByDavid(ListNode head) {
         if (head == null || head.next == null) return head;
         ListNode n1 = head;

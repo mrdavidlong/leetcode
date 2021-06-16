@@ -75,6 +75,7 @@ public class Q0050_Power {
         double power2a = sol.myPow(2, 3);
         double power2b = sol.myPow(2, 4);
         double power2c = sol.myPow(2, 5);
+        double power2d = sol.myPow(2, 10);
         double power3 = sol.myPow(3, 3);
         double power5 = sol.myPow(5,3);
         double power2neg2 = sol.myPow(2, -2);

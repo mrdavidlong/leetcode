@@ -1,8 +1,4 @@
-import java.util.Arrays;
-import java.util.Deque;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Set;
+import java.util.*;
 
 /**
  * https://leetcode.com/problems/simplify-path/description/
@@ -26,18 +22,57 @@ import java.util.Set;
  */
 public class Q0071_SimplifyPath {
     // https://leetcode.com/problems/simplify-path/discuss/25686/Java-10-lines-solution-with-stack
+//    public String simplifyPath(String path) {
+//        Deque<String> stack = new LinkedList<>();
+//        Set<String> skip = new HashSet<>(Arrays.asList("..", ".", ""));
+//        for (String dir : path.split("/")) {
+//            if (dir.equals("..") && !stack.isEmpty()) stack.pop();
+//            else if (!skip.contains(dir)) stack.push(dir);
+//        }
+//        String res = "";
+//        for (String dir : stack) {
+//            res = "/" + dir + res;
+//        }
+//        return res.isEmpty() ? "/" : res;
+//    }
+
+    //https://leetcode.com/problems/simplify-path/solution/
     public String simplifyPath(String path) {
-        Deque<String> stack = new LinkedList<>();
-        Set<String> skip = new HashSet<>(Arrays.asList("..", ".", ""));
-        for (String dir : path.split("/")) {
-            if (dir.equals("..") && !stack.isEmpty()) stack.pop();
-            else if (!skip.contains(dir)) stack.push(dir);
+
+        // Initialize a stack
+        Stack<String> stack = new Stack<String>();
+        String[] components = path.split("/");
+
+        // Split the input string on "/" as the delimiter
+        // and process each portion one by one
+        for (String directory : components) {
+
+            // A no-op for a "." or an empty string
+            if (directory.equals(".") || directory.isEmpty()) {
+                continue;
+            } else if (directory.equals("..")) {
+
+                // If the current component is a "..", then
+                // we pop an entry from the stack if it's non-empty
+                if (!stack.isEmpty()) {
+                    stack.pop();
+                }
+            } else {
+
+                // Finally, a legitimate directory name, so we add it
+                // to our stack
+                stack.add(directory);
+            }
         }
-        String res = "";
+
+        // Stich together all the directory names together
+        StringBuilder result = new StringBuilder();
         for (String dir : stack) {
-            res = "/" + dir + res;
+            result.append("/");
+            result.append(dir);
         }
-        return res.isEmpty() ? "/" : res;
+
+        return result.length() > 0 ? result.toString() : "/" ;
     }
 
     public static void main(String[] args) {
@@ -45,6 +80,8 @@ public class Q0071_SimplifyPath {
 
         String path = "/home/"; //, => "/home"
         String simplifiedPath = sol.simplifyPath(path);
+        String path1 = "/a/b/c/d"; //, => "/home"
+        String simplifiedPath1 = sol.simplifyPath(path1);
         String path2 = "/a/./b/../../c/"; //, => "/c"
         String simplifiedPath2 = sol.simplifyPath(path2);
         String path3 = "/a/../../b/../c//.//"; //, => "/c"

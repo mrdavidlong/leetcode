@@ -59,35 +59,64 @@ Move to the (l-n%l)th node
 //
 //        return dummy.next;
 //    }
+//
 
+
+
+//    public ListNode rotateRight(ListNode head, int k) {
+//        if (head == null) return head;
+//
+//        ListNode tail = head;
+//        int len = 1;
+//        while (tail.next != null) {
+//            tail = tail.next;
+//            len++;
+//        }
+//
+//        int newHeadIndex = len - k % len;
+//        if (newHeadIndex == 0) return head;
+//
+//        // connect the tail the head
+//        tail.next = head;
+//
+//        // get the new head
+//        ListNode newHead = head;
+//        ListNode newTail = head; // newTail is the previous node before newHead
+//        for (int i = 0; i < newHeadIndex; i++) {
+//            newHead = newHead.next;
+//            if (i > 0) newTail = newTail.next;
+//        }
+//
+//        // cut off the tail
+//        newTail.next = null;
+//
+//        return newHead;
+//    }
+
+    // https://leetcode.com/problems/rotate-list/solution/
     public ListNode rotateRight(ListNode head, int k) {
-        if (head == null) return head;
+        // base cases
+        if (head == null) return null;
+        if (head.next == null) return head;
 
-        ListNode tail = head;
-        int len = 1;
-        while (tail.next != null) {
-            tail = tail.next;
-            len++;
-        }
+        // close the linked list into the ring
+        ListNode old_tail = head;
+        int n;
+        for(n = 1; old_tail.next != null; n++)
+            old_tail = old_tail.next;
+        old_tail.next = head;
 
-        int newHeadIndex = len - k % len;
-        if (newHeadIndex == 0) return head;
+        // find new tail : (n - k % n - 1)th node
+        // and new head : (n - k % n)th node
+        ListNode new_tail = head;
+        for (int i = 0; i < n - k % n - 1; i++)
+            new_tail = new_tail.next;
+        ListNode new_head = new_tail.next;
 
-        // connect the tail the head
-        tail.next = head;
+        // break the ring
+        new_tail.next = null;
 
-        // get the new head
-        ListNode newHead = head;
-        ListNode newTail = head; // newTail is the previous node before newHead
-        for (int i = 0; i < newHeadIndex; i++) {
-            newHead = newHead.next;
-            if (i > 0) newTail = newTail.next;
-        }
-
-        // cut off the tail
-        newTail.next = null;
-
-        return newHead;
+        return new_head;
     }
 
 

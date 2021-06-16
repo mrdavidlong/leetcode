@@ -33,7 +33,7 @@ public class Q0022_GenerateParentheses {
         if (open < max)
             backtrack(ans, cur + "(", open + 1, close, max);
 
-        if (close < open) // close has the be less than or equal to open
+        if (close < open) // close has to be less than or equal to open
             backtrack(ans, cur + ")", open, close + 1, max);
     }
 

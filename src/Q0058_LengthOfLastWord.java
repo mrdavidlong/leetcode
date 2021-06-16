@@ -32,10 +32,27 @@ public class Q0058_LengthOfLastWord {
         return sizeOfLastWord;
     }
 
+    public int lengthOfLastWordOfficialSolution(String s) {
+        // trim the trailing spaces
+        int p = s.length() - 1;
+        while (p >= 0 && s.charAt(p) == ' ') {
+            p--;
+        }
+
+        // compute the length of last word
+        int length = 0;
+        while (p >= 0 && s.charAt(p) != ' ') {
+            p--;
+            length++;
+        }
+        return length;
+    }
+
     public static void main(String[] args) {
         Q0058_LengthOfLastWord sol = new Q0058_LengthOfLastWord();
 
-        int lengthOfLastWord = sol.lengthOfLastWord("Hello World");
-        int lengthOfLastWord2 = sol.lengthOfLastWord("a");
+        int lengthOfLastWord = sol.lengthOfLastWordOfficialSolution("Hello World  ");
+        int lengthOfLastWord2 = sol.lengthOfLastWordOfficialSolution("a ");
+        int lengthOfLastWord3 = sol.lengthOfLastWordOfficialSolution("   ");
     }
 }

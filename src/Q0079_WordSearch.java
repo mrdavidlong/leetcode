@@ -75,8 +75,6 @@ public class Q0079_WordSearch {
             {'A','D','E','E'}
         };
 
-        boolean exist4 = sol.exist(new char[][]{{'a'}}, "b");
-
         String word1 = "ABCCED";
         boolean exist1 = sol.exist(board, word1);
         String word2 = "SEE";
