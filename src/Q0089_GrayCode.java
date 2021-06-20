@@ -35,10 +35,14 @@ public class Q0089_GrayCode {
     public List<Integer> grayCode(int n) {
         List<Integer> rs = new ArrayList<>();
         rs.add(0);
-        for(int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++){
             int size = rs.size();
-            for(int k = size-1; k >= 0;  k--)
-                rs.add(rs.get(k) | 1 << i);
+            for (int k = size-1; k >= 0;  k--) {
+                int value = rs.get(k);
+                int mask = 1 << i;
+                int newValue = value | mask;
+                rs.add(newValue);
+            }
         }
         return rs;
     }

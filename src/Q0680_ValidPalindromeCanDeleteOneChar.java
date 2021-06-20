@@ -78,5 +78,12 @@ public class Q0680_ValidPalindromeCanDeleteOneChar {
 //        Output: True
 //        Explanation: You could delete the character 'c'.
         boolean isPalindrome2 = sol.validPalindrome("abca");
+
+
+//        Example 3:
+//        Input: "abcdba"
+//        Output: True
+//        Explanation: You could delete the character 'd'.
+        boolean isPalindrome3 = sol.validPalindrome("abcdba");
     }
 }

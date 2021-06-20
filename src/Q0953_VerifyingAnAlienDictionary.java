@@ -31,29 +31,56 @@ order.length == 26
 All characters in words[i] and order are english lowercase letters.
  */
 public class Q0953_VerifyingAnAlienDictionary {
+//    public boolean isAlienSorted(String[] words, String order) {
+//        int[] index = new int[26];
+//        for (int i = 0; i < order.length(); ++i)
+//            index[order.charAt(i) - 'a'] = i;
+//
+//        search: for (int i = 0; i < words.length - 1; ++i) {
+//            String word1 = words[i];
+//            String word2 = words[i+1];
+//
+//            // Find the first difference word1[k] != word2[k].
+//            for (int k = 0; k < Math.min(word1.length(), word2.length()); ++k) {
+//                if (word1.charAt(k) != word2.charAt(k)) {
+//                    // If they compare badly, it's not sorted.
+//                    if (index[word1.charAt(k) - 'a'] > index[word2.charAt(k) - 'a'])
+//                        return false;
+//                    continue search;
+//                }
+//            }
+//
+//            // If we didn't find a first difference, the
+//            // words are like ("app", "apple").
+//            if (word1.length() > word2.length())
+//                return false;
+//        }
+//
+//        return true;
+//    }
+
+    // https://leetcode.com/problems/verifying-an-alien-dictionary/solution/
     public boolean isAlienSorted(String[] words, String order) {
-        int[] index = new int[26];
-        for (int i = 0; i < order.length(); ++i)
-            index[order.charAt(i) - 'a'] = i;
+        int[] orderMap = new int[26];
+        for (int i = 0; i < order.length(); i++){
+            orderMap[order.charAt(i) - 'a'] = i;
+        }
 
-        search: for (int i = 0; i < words.length - 1; ++i) {
-            String word1 = words[i];
-            String word2 = words[i+1];
+        for (int i = 0; i < words.length - 1; i++) {
+            for (int j = 0; j < words[i].length(); j++) {
+                // If we do not find a mismatch letter between words[i] and words[i + 1],
+                // we need to examine the case when words are like ("apple", "app").
+                if (j >= words[i + 1].length()) return false;
 
-            // Find the first difference word1[k] != word2[k].
-            for (int k = 0; k < Math.min(word1.length(), word2.length()); ++k) {
-                if (word1.charAt(k) != word2.charAt(k)) {
-                    // If they compare badly, it's not sorted.
-                    if (index[word1.charAt(k) - 'a'] > index[word2.charAt(k) - 'a'])
-                        return false;
-                    continue search;
+                if (words[i].charAt(j) != words[i + 1].charAt(j)) {
+                    int currentWordChar = words[i].charAt(j) - 'a';
+                    int nextWordChar = words[i + 1].charAt(j) - 'a';
+                    if (orderMap[currentWordChar] > orderMap[nextWordChar]) return false;
+                        // if we find the first different letter and they are sorted,
+                        // then there's no need to check remaining letters
+                    else break;
                 }
             }
-
-            // If we didn't find a first difference, the
-            // words are like ("app", "apple").
-            if (word1.length() > word2.length())
-                return false;
         }
 
         return true;

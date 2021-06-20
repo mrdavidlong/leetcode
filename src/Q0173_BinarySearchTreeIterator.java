@@ -57,6 +57,13 @@ public class Q0173_BinarySearchTreeIterator {
         t1.left = t0;
         t5.left = t4;
 
+        /*
+        3
+       / \
+      1   5
+     / \  /
+    0   2 4
+        */
         int[] v = new int[10];
         BSTIterator i = new BSTIterator(t3);
         int index = 0;

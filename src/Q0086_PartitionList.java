@@ -32,6 +32,7 @@ public class Q0086_PartitionList {
 //        return dummy1.next;
 //    }
 
+    // from CtCI
     public ListNode partition(ListNode head, int x) {
         ListNode beforeStart = null, beforeEnd = null;
         ListNode afterStart = null, afterEnd = null;

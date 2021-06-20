@@ -71,6 +71,16 @@ public class Q0236_LowestCommonAncestorOfABinaryTree {
         t2.left = t7;
         t2.right = t4;
 
+        /*
+         3
+       /   \
+      5     1
+     / \    / \
+    6   2  0   8
+       / \
+      7   4
+         */
+
         TreeNode common1 = sol.lowestCommonAncestor(t3, t5, t1);
         TreeNode common2 = sol.lowestCommonAncestor(t3, t5, t4);
         TreeNode common3 = sol.lowestCommonAncestor(t3, t6, t4);

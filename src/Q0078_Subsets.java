@@ -13,7 +13,7 @@ public class Q0078_Subsets {
 
     private void backtrack(List<List<Integer>> list , List<Integer> tempList, int [] nums, int start){
         list.add(new ArrayList<>(tempList));
-        for(int i = start; i < nums.length; i++){
+        for (int i = start; i < nums.length; i++) {
             tempList.add(nums[i]);
             backtrack(list, tempList, nums, i + 1);
             tempList.remove(tempList.size() - 1);
@@ -54,12 +54,15 @@ public class Q0078_Subsets {
             System.out.println();
         }
 
+        //output:
+
 //        1
-//        2
-//        3
 //        1 2
-//        1 3
-//        2 3
 //        1 2 3
+//        1 3
+//        2
+//        2 3
+//        3
+
     }
 }

@@ -12,8 +12,7 @@ class Knapsack
     static int max(int a, int b) { return (a > b)? a : b; }
 
     // Returns the maximum value that can be put in a knapsack of capacity W
-    static int knapSack(int W, int wt[], int val[], int n)
-    {
+    static int knapSack(int W, int wt[], int val[], int n) {
         // Base Case
         if (n == 0 || W == 0)
             return 0;

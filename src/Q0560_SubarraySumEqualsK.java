@@ -25,6 +25,65 @@ public class Q0560_SubarraySumEqualsK {
         return count;
     }
 
+    /*
+    Instead of determining the sum of elements every time for every new subarray considered, we can make use of a cumulative sum array ,
+s
+u
+m
+sum. Then, in order to calculate the sum of elements lying between two indices, we can subtract the cumulative sum corresponding to the two indices to obtain the sum directly, instead of iterating over the subarray to obtain the sum.
+
+In this implementation, we make use of a cumulative sum array,
+s
+u
+m
+sum, such that
+s
+u
+m
+[
+i
+]
+sum[i] is used to store the cumulative sum of
+n
+u
+m
+s
+nums array up to the element corresponding to the
+(
+i
+−
+1
+)
+(i−1)
+th
+ index. Thus, to determine the sum of elements for the subarray
+n
+u
+m
+s
+[
+i
+:
+j
+]
+nums[i:j], we can directly use
+s
+u
+m
+[
+j
++
+1
+]
+−
+s
+u
+m
+[
+i
+]
+sum[j+1]−sum[i].
+     */
     public int subarraySumCumSum(int[] nums, int k) {
         int count = 0;
         int[] sum = new int[nums.length + 1];
@@ -53,9 +112,15 @@ public class Q0560_SubarraySumEqualsK {
         return count;
     }
 
+
+    /*
+    Complexity Analysis
+    Time complexity : O(n). The entire nums array is traversed only once.
+    Space complexity : O(n). Hashmap map can contain up to n distinct entries in the worst case.
+     */
     public int subarraySum(int[] nums, int k) {
         int count = 0, sum = 0;
-        HashMap <Integer, Integer> map = new HashMap<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
         map.put(0, 1);
         for (int i = 0; i < nums.length; i++) {
             sum += nums[i];
@@ -69,5 +134,7 @@ public class Q0560_SubarraySumEqualsK {
     public static void main(String[] args) {
         Q0560_SubarraySumEqualsK sol = new Q0560_SubarraySumEqualsK();
         int count = sol.subarraySum(new int[] {3,4,7,2,-3,1,4,2}, 7);
+        int count1 = sol.subarraySumCumSum(new int[] {1,1,1}, 2);
+        int count2 = sol.subarraySumCumSum(new int[] {1,2,3}, 3);
     }
 }

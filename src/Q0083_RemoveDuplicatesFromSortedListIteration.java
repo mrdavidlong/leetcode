@@ -3,15 +3,28 @@ import common.ListNode;
  * Created by davidlong on 9/17/18.
  */
 public class Q0083_RemoveDuplicatesFromSortedListIteration {
-    public ListNode deleteDuplicates(ListNode head) {
-        ListNode cur = head;
-        while (cur != null) {
-            while (cur.next != null && cur.next.val == cur.val) {
-                cur.next = cur.next.next;
-            }
-            cur = cur.next;
-        }
+//    public ListNode deleteDuplicates(ListNode head) {
+//        ListNode cur = head;
+//        while (cur != null) {
+//            while (cur.next != null && cur.val == cur.next.val) {
+//                cur.next = cur.next.next;
+//            }
+//            cur = cur.next;
+//        }
+//
+//        return head;
+//    }
 
+    //https://leetcode.com/problems/remove-duplicates-from-sorted-list/solution/
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode current = head;
+        while (current != null && current.next != null) {
+            if (current.val == current.next.val) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
         return head;
     }
 

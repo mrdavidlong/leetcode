@@ -32,36 +32,72 @@ public class Q0426_ConvertBinarySearchTreeToSortedDoublyLinkedList {
         }
     }
 
-    public Node treeToDoublyList(Node root) {
-        if (root == null) {
-            return null;
-        }
+//    public Node treeToDoublyList(Node root) {
+//        if (root == null) {
+//            return null;
+//        }
+//
+//        Node leftHead = treeToDoublyList(root.left);
+//        Node rightHead = treeToDoublyList(root.right);
+//        root.left = root;
+//        root.right = root;
+//        return connect(connect(leftHead, root), rightHead);
+//    }
+//
+//    // Used to connect two circular doubly linked lists. n1 is the head as well as n2.
+//    private Node connect(Node n1, Node n2) {
+//        if (n1 == null) {
+//            return n2;
+//        }
+//        if (n2 == null) {
+//            return n1;
+//        }
+//
+//        Node tail1 = n1.left;
+//        Node tail2 = n2.left;
+//
+//        tail1.right = n2;
+//        n2.left = tail1;
+//        tail2.right = n1;
+//        n1.left = tail2;
+//
+//        return n1;
+//    }
 
-        Node leftHead = treeToDoublyList(root.left);
-        Node rightHead = treeToDoublyList(root.right);
-        root.left = root;
-        root.right = root;
-        return connect(connect(leftHead, root), rightHead);
+    // the smallest (first) and the largest (last) nodes
+    Node first = null;
+    Node last = null;
+
+    public void helper(Node node) {
+        if (node != null) {
+            // left
+            helper(node.left);
+            // node
+            if (last != null) {
+                // link the previous node (last)
+                // with the current one (node)
+                last.right = node;
+                node.left = last;
+            }
+            else {
+                // keep the smallest node
+                // to close DLL later on
+                first = node;
+            }
+            last = node;
+            // right
+            helper(node.right);
+        }
     }
 
-    // Used to connect two circular doubly linked lists. n1 is the head as well as n2.
-    private Node connect(Node n1, Node n2) {
-        if (n1 == null) {
-            return n2;
-        }
-        if (n2 == null) {
-            return n1;
-        }
+    public Node treeToDoublyList(Node root) {
+        if (root == null) return null;
 
-        Node tail1 = n1.left;
-        Node tail2 = n2.left;
-
-        tail1.right = n2;
-        n2.left = tail1;
-        tail2.right = n1;
-        n1.left = tail2;
-
-        return n1;
+        helper(root);
+        // close DLL
+        last.right = first;
+        first.left = last;
+        return first;
     }
 
     public static void main(String[] args) {

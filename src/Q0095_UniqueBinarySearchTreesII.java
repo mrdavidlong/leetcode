@@ -116,5 +116,8 @@ public class Q0095_UniqueBinarySearchTreesII {
         List<TreeNode> list1 = sol.generateTrees(1);
         List<TreeNode> list2 = sol.generateTrees(2);
         List<TreeNode> list3 = sol.generateTrees(3);
+        List<TreeNode> list4 = sol.generateTrees(4);
+        List<TreeNode> list5 = sol.generateTrees(5);
+        int i = 0;
     }
 }

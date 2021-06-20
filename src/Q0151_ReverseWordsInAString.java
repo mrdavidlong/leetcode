@@ -45,8 +45,8 @@ public class Q0151_ReverseWordsInAString {
         int i = 0, j = 0;
 
         while (i < n) {
-            while (i < j || i < n && a[i] == ' ') i++; // skip spaces, i < j check so that we can get pass the previous word
-            while (j < i || j < n && a[j] != ' ') j++; // skip non spaces, j < i check so that we can get pass the previous word
+            while (i < j || (i < n && a[i] == ' ')) i++; // skip spaces, i < j check so that we can get pass the previous word
+            while (j < i || (j < n && a[j] != ' ')) j++; // skip non spaces, j < i check so that we can get pass the previous word
             reverse(a, i, j - 1);                      // reverse the word
         }
     }

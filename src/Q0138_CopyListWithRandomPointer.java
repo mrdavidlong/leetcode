@@ -21,6 +21,7 @@ public class Q0138_CopyListWithRandomPointer {
         Node(int x, Node next, Node random) { this.val = x; this.next = next; this.random = random; }
     }
 
+    //https://leetcode.com/problems/copy-list-with-random-pointer/solution/
     // Solution #1 Recursive
     // HashMap which holds old nodes as keys and new nodes as its values.
     HashMap<Node, Node> visitedHash = new HashMap<>();

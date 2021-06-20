@@ -1,11 +1,7 @@
+import common.Pair;
 import common.TreeNode;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 /*
 https://leetcode.com/problems/binary-tree-vertical-order-traversal/
@@ -96,7 +92,7 @@ Here is an example of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]. Notice that every c
 
 vertical by yavinci on 500px.com
      */
-    public List<List<Integer>> verticalOrder(TreeNode root) {
+    public List<List<Integer>> verticalOrder2(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
         if (root == null) {
             return res;
@@ -139,6 +135,52 @@ vertical by yavinci on 500px.com
         }
 
         return res;
+    }
+
+
+    /**
+     * Definition for a binary tree node.
+     * public class TreeNode {
+     *     int val;
+     *     TreeNode left;
+     *     TreeNode right;
+     *     TreeNode(int x) { val = x; }
+     * }
+     */
+    public List<List<Integer>> verticalOrder(TreeNode root) {
+        List<List<Integer>> output = new ArrayList();
+        if (root == null) {
+            return output;
+        }
+
+        Map<Integer, ArrayList> columnTable = new HashMap();
+        Queue<Pair<TreeNode, Integer>> queue = new ArrayDeque();
+        int column = 0;
+        queue.offer(new Pair(root, column));
+
+        while (!queue.isEmpty()) {
+            Pair<TreeNode, Integer> p = queue.poll();
+            root = p.getKey();
+            column = p.getValue();
+
+            if (root != null) {
+                if (!columnTable.containsKey(column)) {
+                    columnTable.put(column, new ArrayList<Integer>());
+                }
+                columnTable.get(column).add(root.val);
+
+                queue.offer(new Pair(root.left, column - 1));
+                queue.offer(new Pair(root.right, column + 1));
+            }
+        }
+
+        List<Integer> sortedKeys = new ArrayList<>(columnTable.keySet());
+        Collections.sort(sortedKeys);
+        for(int k : sortedKeys) {
+            output.add(columnTable.get(k));
+        }
+
+        return output;
     }
 
     public static void main(String[] args) {

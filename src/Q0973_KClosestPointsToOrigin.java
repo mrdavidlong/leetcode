@@ -121,5 +121,6 @@ In Python, we sort by a custom key function - namely, the distance to the origin
     public static void main(String[] args) {
         Q0973_KClosestPointsToOrigin sol = new Q0973_KClosestPointsToOrigin();
         int[][] points = sol.kClosest(new int[][] {{3,3},{5,-1},{-2,4}}, 2);
+        int[][] points1 = sol.kClosestSol1(new int[][] {{3,3},{5,-1},{-2,4}}, 2);
     }
 }
