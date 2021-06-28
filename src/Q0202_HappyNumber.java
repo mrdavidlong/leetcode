@@ -21,32 +21,52 @@ Explanation:
 12 + 02 + 02 = 1
  */
 public class Q0202_HappyNumber {
-    public List<Integer> getDigits(int n) {
-        List<Integer> digits = new ArrayList<>();
+    // https://leetcode.com/problems/happy-number/solution/
+    private int getNext(int n) {
+        int totalSum = 0;
         while (n > 0) {
-            int digit = n % 10;
-            digits.add(digit);
-            n /= 10;
+            int d = n % 10;
+            n = n / 10;
+            totalSum += d * d;
         }
-        return digits;
+        return totalSum;
     }
 
     public boolean isHappy(int n) {
-        return isHappyCore(n, new HashSet<>());
-    }
-
-    public boolean isHappyCore(int n, Set<Integer> visited) {
-        if (n == 0) return false;
-        if (!visited.add(n)) return false;
-
-        List<Integer> digits = getDigits(n);
-        int sum = 0;
-        for (Integer digit: digits) {
-            sum += digit * digit;
+        Set<Integer> seen = new HashSet<>();
+        while (n != 1 && !seen.contains(n)) {
+            seen.add(n);
+            n = getNext(n);
         }
-        if (sum == 1) return true;
-        else return isHappyCore(sum, visited);
+        return n == 1;
     }
+
+//    public List<Integer> getDigits(int n) {
+//        List<Integer> digits = new ArrayList<>();
+//        while (n > 0) {
+//            int digit = n % 10;
+//            digits.add(digit);
+//            n /= 10;
+//        }
+//        return digits;
+//    }
+//
+//    public boolean isHappy(int n) {
+//        return isHappyCore(n, new HashSet<>());
+//    }
+//
+//    public boolean isHappyCore(int n, Set<Integer> visited) {
+//        if (n == 0) return false;
+//        if (!visited.add(n)) return false;
+//
+//        List<Integer> digits = getDigits(n);
+//        int sum = 0;
+//        for (Integer digit: digits) {
+//            sum += digit * digit;
+//        }
+//        if (sum == 1) return true;
+//        else return isHappyCore(sum, visited);
+//    }
 
     public static void main(String[] args) {
         Q0202_HappyNumber sol = new Q0202_HappyNumber();

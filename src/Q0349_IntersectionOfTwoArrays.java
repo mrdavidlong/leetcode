@@ -59,6 +59,7 @@ public class Q0349_IntersectionOfTwoArrays {
     public static void main(String[] args) {
         Q0349_IntersectionOfTwoArrays sol = new Q0349_IntersectionOfTwoArrays();
         int[] intersact = sol.intersection(new int[] {4,9,5}, new int[] {9,4,9,8,4});
+        int[] intersact1 = sol.intersection(new int[] {1,2,2,1}, new int[] {2,2});
         int[] intersact2 = sol.intersectionUsingBuiltInMethod(new int[] {4,9,5}, new int[] {9,4,9,8,4});
 
     }

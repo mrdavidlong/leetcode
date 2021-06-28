@@ -102,4 +102,8 @@ public class Q0412_FizzBuzz {
         return ans;
     }
 
+    public static void main(String[] args) {
+        Q0412_FizzBuzz sol = new Q0412_FizzBuzz();
+        List<String> fizzBuzz1 = sol.fizzBuzz1(15);
+    }
 }

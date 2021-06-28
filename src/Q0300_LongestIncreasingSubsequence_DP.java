@@ -1,32 +1,29 @@
+import java.util.Arrays;
+
 /**
  * https://leetcode.com/problems/longest-increasing-subsequence/solution/
  */
 public class Q0300_LongestIncreasingSubsequence_DP {
-
+    // time complexity: O(N^2)
+    // space  complexity: O(N)
     public int lengthOfLIS(int[] nums) {
-        if (nums.length == 0) {
-            return 0;
-        }
         int[] dp = new int[nums.length];
-        dp[0] = 1;
-        int maxLength = 1;
-        for (int i = 1; i < dp.length; i++) {
-            // get max out dp[j] where nums[j] < nums[i]
-            int maxDpJInOrder = 0;
+        Arrays.fill(dp, 1);
+
+        for (int i = 1; i < nums.length; i++) {
             for (int j = 0; j < i; j++) {
-                if (nums[j] < nums[i]) {
-                    maxDpJInOrder = Math.max(maxDpJInOrder, dp[j]);
+                if (nums[i] > nums[j]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
             }
-
-            // get max of dp[j] where nums[j] < nums[i], then + 1
-            dp[i] = maxDpJInOrder + 1;
-
-            // get max of dp[i]
-            maxLength = Math.max(maxLength, dp[i]);
         }
-        print(dp);
-        return maxLength;
+
+        int longest = 0;
+        for (int c: dp) {
+            longest = Math.max(longest, c);
+        }
+
+        return longest;
     }
 
     private static void print(int[] dp) {

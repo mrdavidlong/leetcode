@@ -252,6 +252,10 @@ In the main searchRange function, we first call findBound with isFirst set to tr
         int[] nums2 = new int[] {5,7,7,8,8,10};
         int target2 = 5;
         int[] ranges2 = sol.searchRange(nums2, target2);
+
+        int[] nums3 = new int[] {5,5,7,7,8,8,10};
+        int target3 = 5;
+        int[] ranges3 = sol.searchRange(nums2, target3);
     }
 
 }
