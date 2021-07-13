@@ -79,6 +79,33 @@ class SparseVector3 {
     }
 }
 
+
+class SparseVector4 {
+
+    int[][] pairs;
+
+    SparseVector4(int[][] pairs) {
+        this.pairs = pairs;
+    }
+
+    // Return the dotProduct of two sparse vectors
+    public int dotProduct(SparseVector4 vec) {
+        int result = 0, p = 0, q = 0;
+        while (p < pairs.length && q < vec.pairs.length) {
+            if (pairs[p][0] == vec.pairs[q][0]) {
+                result += pairs[p][1] * vec.pairs[q][1];
+                p++;
+                q++;
+            } else if (pairs[p][0] > vec.pairs[q][0]) {
+                q++;
+            } else {
+                p++;
+            }
+        }
+        return result;
+    }
+}
+
 public class Q1570_Dot_Product_Of_Two_Sparse_Vector {
 
 }
