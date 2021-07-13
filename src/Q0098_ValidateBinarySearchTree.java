@@ -38,6 +38,7 @@ public class Q0098_ValidateBinarySearchTree {
         if (root == null)
             return true;
 
+        // left node has to be less than the current node, not equal
         if ((min != null && root.val <= min) || (max != null && root.val >= max))
             return false;
 
