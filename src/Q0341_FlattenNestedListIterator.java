@@ -1,6 +1,5 @@
-import java.util.Iterator;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
+import java.util.NoSuchElementException;
 
 /**
  * https://leetcode.com/problems/flatten-nested-list-iterator/description/
@@ -44,7 +43,7 @@ public class Q0341_FlattenNestedListIterator {
     public class NestedIterator implements Iterator<Integer> {
         Stack<NestedInteger> stack = new Stack<>();
         public NestedIterator(List<NestedInteger> nestedList) {
-            for(int i = nestedList.size() - 1; i >= 0; i--) {
+            for (int i = nestedList.size() - 1; i >= 0; i--) {
                 stack.push(nestedList.get(i));
             }
         }
@@ -56,9 +55,9 @@ public class Q0341_FlattenNestedListIterator {
 
         @Override
         public boolean hasNext() {
-            while(!stack.isEmpty()) {
+            while (!stack.isEmpty()) {
                 NestedInteger curr = stack.peek();
-                if(curr.isInteger()) {
+                if (curr.isInteger()) {
                     return true;
                 } else {
                     stack.pop();
@@ -68,6 +67,41 @@ public class Q0341_FlattenNestedListIterator {
                 }
             }
             return false;
+        }
+    }
+
+    // https://leetcode.com/problems/flatten-nested-list-iterator/solution/
+    public class NestedIteratorFlattenFirst implements Iterator<Integer> {
+
+        private List<Integer> integers = new ArrayList<Integer>();
+        private int position = 0; // Pointer to next integer to return.
+
+        public NestedIteratorFlattenFirst(List<NestedInteger> nestedList) {
+            flattenList(nestedList);
+        }
+
+        // Recursively unpacks a nested list in DFS order.
+        private void flattenList(List<NestedInteger> nestedList) {
+            for (NestedInteger nestedInteger : nestedList) {
+                if (nestedInteger.isInteger()) {
+                    integers.add(nestedInteger.getInteger());
+                } else {
+                    flattenList(nestedInteger.getList());
+                }
+            }
+        }
+
+        @Override
+        public Integer next() {
+            // As per Java specs, we should throw an exception if no more ints.
+            if (!hasNext()) throw new NoSuchElementException();
+            // Return int at current position, and then *after*, increment position.
+            return integers.get(position++);
+        }
+
+        @Override
+        public boolean hasNext() {
+            return position < integers.size();
         }
     }
 

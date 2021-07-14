@@ -1,7 +1,6 @@
 public class Q0037_SudokuSolverBest {
 
     // Modified from https://github.com/CyC2018/Interview-Notebook/blob/master/notes/Leetcode%20题解.md#backtracking
-
     public void solveSudoku(char[][] board) {
         boolean[][] rowsUsed = new boolean[9][10];  // 9 rows; 0 to 9 value, but 0 is not used, it just makes the math easier
         boolean[][] colsUsed = new boolean[9][10];
@@ -18,17 +17,12 @@ public class Q0037_SudokuSolverBest {
             }
         }
 
-//        for (int i = 0; i < 9; i++) {
-//            for (int j = 0; j < 9; j++) {
-//                backtracking(board, i, j, rowsUsed, colsUsed, cubesUsed);
-//            }
-//        }
         backtracking(board, 0, 0, rowsUsed, colsUsed, cubesUsed);
     }
 
     private boolean backtracking(char[][] board, int row, int col, boolean[][] rowsUsed, boolean[][] colsUsed, boolean[][] cubesUsed) {
         // go to the next position to solve, i.e. position that is not a '.'
-        while(row < 9 && board[row][col] != '.') {
+        while (row < 9 && board[row][col] != '.') {
             row = (col == 8) ? row + 1 : row;
             col = (col == 8) ? 0 : col + 1;
         }
