@@ -23,18 +23,18 @@ public class Q0204_CountPrimes {
             return 0;
         }
 
-        boolean[] numbers = new boolean[n];
+        boolean[] nonPrimeNumbers = new boolean[n];
         for (int p = 2; p <= (int)Math.sqrt(n); ++p) {
-            if (numbers[p] == false) {
+            if (nonPrimeNumbers[p] == false) {
                 for (int j = p*p; j < n; j += p) {
-                    numbers[j] = true;
+                    nonPrimeNumbers[j] = true;
                 }
             }
         }
 
         int numberOfPrimes = 0;
         for (int i = 2; i < n; i++) {
-            if (numbers[i] == false) {
+            if (nonPrimeNumbers[i] == false) {
                 ++numberOfPrimes;
             }
         }
@@ -44,6 +44,7 @@ public class Q0204_CountPrimes {
 
     public static void main(String[] args) {
         Q0204_CountPrimes sol = new Q0204_CountPrimes();
-        int count = sol.countPrimes(10);
+        int count = sol.countPrimes(2);
+        int count2 = sol.countPrimes(10);
     }
 }

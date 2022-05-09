@@ -3,6 +3,9 @@ import java.util.List;
 import java.util.Random;
 
 public class Q0384_Shuffle_An_Array {
+    // https://leetcode.com/problems/shuffle-an-array/solution/
+    // Time: O(n^2)
+    // Space: O(n)
     private int[] array;
     private int[] original;
 
@@ -32,7 +35,7 @@ public class Q0384_Shuffle_An_Array {
         for (int i = 0; i < array.length; i++) {
             int removeIdx = rand.nextInt(aux.size());
             array[i] = aux.get(removeIdx);
-            aux.remove(removeIdx);
+            aux.remove(removeIdx); // this is O(n)
         }
 
         return array;

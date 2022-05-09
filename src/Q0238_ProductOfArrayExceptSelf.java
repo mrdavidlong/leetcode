@@ -53,6 +53,11 @@ public class Q0238_ProductOfArrayExceptSelf {
 //
 //    We store lefts in result array. If we allocate a new array for rights. The space complexity is O(n). To make it O(1), we just need to store it in a variable which is right in @lycjava3’s code.
 
+
+//    Numbers:     1     2      3       4
+//    Lefts:       1   1*1    1*2   1*2*3
+//    Rights:  2*3*4   3*4      4       1
+//    Product:    24    12      8       6
     public int[] productExceptSelf(int[] nums) {
         int n = nums.length;
         int[] res = new int[n];
