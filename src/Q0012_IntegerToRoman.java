@@ -44,7 +44,7 @@ public class Q0012_IntegerToRoman {
 
     public static void main(String[] args) {
         Q0012_IntegerToRoman q = new Q0012_IntegerToRoman();
-        int input = 1993;
+        int input = 1994;
         String output = q.intToRoman(input);
         System.out.println("output = " + output);
     }

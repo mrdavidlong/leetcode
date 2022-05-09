@@ -50,5 +50,7 @@ public class Q0043_MultiplyStrings {
         Q0043_MultiplyStrings sol = new Q0043_MultiplyStrings();
 
         String result = sol.multiply("123", "45");
+        String result2 = sol.multiply("99", "99");
+        String result3 = sol.multiply("10", "10");
     }
 }

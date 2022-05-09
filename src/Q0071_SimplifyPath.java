@@ -75,15 +75,53 @@ public class Q0071_SimplifyPath {
         return result.length() > 0 ? result.toString() : "/" ;
     }
 
+    public String simplifyPath2(String path) {
+
+        // Initialize a stack
+        LinkedList<String> list = new LinkedList<>();
+        String[] components = path.split("/");
+
+        // Split the input string on "/" as the delimiter
+        // and process each portion one by one
+        for (String directory : components) {
+
+            // A no-op for a "." or an empty string
+            if (directory.equals(".") || directory.isEmpty()) {
+                continue;
+            } else if (directory.equals("..")) {
+
+                // If the current component is a "..", then
+                // we pop an entry from the stack if it's non-empty
+                if (!list.isEmpty()) {
+                    list.removeLast();
+                }
+            } else {
+
+                // Finally, a legitimate directory name, so we add it
+                // to our stack
+                list.addLast(directory);
+            }
+        }
+
+        // Stich together all the directory names together
+        StringBuilder result = new StringBuilder();
+        for (String dir : list) {
+            result.append("/");
+            result.append(dir);
+        }
+
+        return result.length() > 0 ? result.toString() : "/" ;
+    }
+
     public static void main(String[] args) {
         Q0071_SimplifyPath sol = new Q0071_SimplifyPath();
 
         String path = "/home/"; //, => "/home"
-        String simplifiedPath = sol.simplifyPath(path);
-        String path1 = "/a/b/c/d"; //, => "/home"
-        String simplifiedPath1 = sol.simplifyPath(path1);
+        String simplifiedPath = sol.simplifyPath2(path);
+        String path1 = "/a/b/c/d"; //, => "/a/b/c/d"
+        String simplifiedPath1 = sol.simplifyPath2(path1);
         String path2 = "/a/./b/../../c/"; //, => "/c"
-        String simplifiedPath2 = sol.simplifyPath(path2);
+        String simplifiedPath2 = sol.simplifyPath2(path2);
         String path3 = "/a/../../b/../c//.//"; //, => "/c"
         String simplifiedPath3 = sol.simplifyPath(path3);
         String path4 = "/a//b////c/d//././/.."; //, => "/a/b/c"

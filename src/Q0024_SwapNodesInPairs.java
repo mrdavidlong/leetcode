@@ -4,24 +4,6 @@ import common.ListNode;
  */
 public class Q0024_SwapNodesInPairs {
 
-    // this is not the right solution, since it's swapping values, not the nodes
-    public ListNode swapPairsByDavid(ListNode head) {
-        if (head == null || head.next == null) return head;
-        ListNode n1 = head;
-        ListNode n2 = head.next;
-        while (n1 != null && n2 != null) {
-            int temp = n1.val;
-            n1.val = n2.val;
-            n2.val = temp;
-
-            if (n2.next == null) break;
-            if (n2.next != null && n2.next.next == null) throw new IllegalArgumentException("List cannot be have odd number of items");
-            n1 = n1.next.next;
-            n2 = n2.next.next;
-        }
-        return head;
-    }
-
     public ListNode swapPairsRecursion(ListNode head) {
         if ((head == null) || (head.next == null)) return head;
 

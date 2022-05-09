@@ -124,8 +124,8 @@ public class Q0046_Permutations {
 //        3 2 1
 
         int[] nums = {1,2,3};
-        //List<List<Integer>> perms = sol.permute(nums);
-        List<List<Integer>> perms = sol.permuteOfficialSolution(nums);
+        List<List<Integer>> perms = sol.permute(nums);
+        List<List<Integer>> perms2 = sol.permuteOfficialSolution(nums);
         for (List<Integer> list : perms) {
             for (Integer i : list) {
                 System.out.print(i + " ");

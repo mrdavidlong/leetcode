@@ -99,7 +99,7 @@ sum[j+1]−sum[i].
         return count;
     }
 
-    public int subarraySumNoSpace(int[] nums, int k) {
+    public int subarraySumCumSumNoSpace(int[] nums, int k) {
         int count = 0;
         for (int start = 0; start < nums.length; start++) {
             int sum=0;
@@ -117,6 +117,9 @@ sum[j+1]−sum[i].
     Complexity Analysis
     Time complexity : O(n). The entire nums array is traversed only once.
     Space complexity : O(n). Hashmap map can contain up to n distinct entries in the worst case.
+
+    key, value
+
      */
     public int subarraySum(int[] nums, int k) {
         int count = 0, sum = 0;
@@ -133,6 +136,9 @@ sum[j+1]−sum[i].
 
     public static void main(String[] args) {
         Q0560_SubarraySumEqualsK sol = new Q0560_SubarraySumEqualsK();
+        int countBF = sol.subarraySumBF(new int[] {3,4,7,2,-3,1,4,2}, 7);
+        int countCumSum = sol.subarraySumCumSum(new int[] {3,4,7,2,-3,1,4,2}, 7);
+        int countCumSumNoSpace = sol.subarraySumCumSumNoSpace(new int[] {3,4,7,2,-3,1,4,2}, 7);
         int count = sol.subarraySum(new int[] {3,4,7,2,-3,1,4,2}, 7);
         int count1 = sol.subarraySumCumSum(new int[] {1,1,1}, 2);
         int count2 = sol.subarraySumCumSum(new int[] {1,2,3}, 3);

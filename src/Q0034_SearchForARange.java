@@ -245,7 +245,7 @@ In the main searchRange function, we first call findBound with isFirst set to tr
     public static void main(String[] args) {
         Q0034_SearchForARange sol = new Q0034_SearchForARange();
 
-        int[] nums1 = new int[] {5,7,8,8,8,10};
+        int[] nums1 = new int[] {5,7,8,8,8,8,10};
         int target1 = 8;
         int[] ranges1 = sol.searchRange(nums1, target1);
 

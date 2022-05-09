@@ -30,6 +30,7 @@ import java.util.Map;
  */
 public class Q0146_LruCache {
 
+    // https://leetcode.com/problems/lru-cache/solution/
     class LRUCache extends LinkedHashMap<Integer, Integer> {
         private int capacity;
 

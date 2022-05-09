@@ -125,9 +125,12 @@ basic ideal is using buckets. 1 bucket for every second because we only need to 
          @param timestamp - The current timestamp (in seconds granularity). */
         public int getHits(int timestamp) {
             while (!this.hits.isEmpty()) {
-                int diff = timestamp - this.hits.peek();
-                if (diff >= 300) this.hits.remove();
-                else break;
+                int diff = timestamp - this.hits.peek(); // peek the head of the queue, i.e. the oldest one
+                if (diff >= 300) {
+                    this.hits.remove(); // removes the head of the queue, i.e. the oldest one
+                } else {
+                    break;
+                }
             }
             return this.hits.size();
         }
