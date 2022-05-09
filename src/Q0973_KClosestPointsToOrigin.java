@@ -59,8 +59,10 @@ In Python, we sort by a custom key function - namely, the distance to the origin
         int[][] ans = new int[K][2];
         int t = 0;
         for (int i = 0; i < N; ++i)
-            if (dist(points[i]) <= distK)
+            if (dist(points[i]) <= distK) {
                 ans[t++] = points[i];
+                if (t == K) break;
+            }
         return ans;
     }
 
