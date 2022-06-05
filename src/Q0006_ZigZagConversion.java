@@ -54,6 +54,6 @@ public class Q0006_ZigZagConversion {
     public static void main(String[] args) {
         String input = "PAYPALISHIRING";
         String output = convert(input, 4);
-        System.out.println("convert = " + output);
+        System.out.println("convert = " + output); // PINALSIGYAHRPI
     }
 }
