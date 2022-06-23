@@ -24,7 +24,7 @@ public class Q0108_ConvertSortedArrayToBinarySearchTree {
         return toBST(nums, 0, nums.length - 1);
     }
 
-    private TreeNode toBST(int[] nums, int start, int end){
+    private TreeNode toBST(int[] nums, int start, int end) {
         if (start > end) return null;
         int mIdx = (start + end) / 2;
         TreeNode root = new TreeNode(nums[mIdx]);

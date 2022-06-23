@@ -16,33 +16,6 @@
 
  */
 public class Q0125_ValidPalindrome {
-//    public boolean isPalindrome(String s) {
-//        if (s == null || s.length() == 0) return true;
-//
-//        String lowerS = s.toLowerCase();
-//        int i = 0;
-//        int j = s.length() - 1;
-//        while (i <= j) {
-//            if (!isAlpahNumberic(lowerS.charAt(i))) {
-//                i++;
-//                continue;
-//            }
-//            if (!isAlpahNumberic(lowerS.charAt(j))) {
-//                j--;
-//                continue;
-//            }
-//            if (lowerS.charAt(i) != lowerS.charAt(j)) {
-//                return false;
-//            }
-//            i++;
-//            j--;
-//        }
-//        return true;
-//    }
-//
-//    private boolean isAlpahNumberic(char c) {
-//        return (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9');
-//    }
     public boolean isPalindrome(String s) {
         if (s == null || s.isEmpty()) return true;
 

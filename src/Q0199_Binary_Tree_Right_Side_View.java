@@ -9,6 +9,11 @@ Given the root of a binary tree, imagine yourself standing on the right side of 
 
 Example 1:
 
+       1
+      / \
+     2   3
+      \   \
+       5    4
 
 Input: root = [1,2,3,null,5,null,4]
 Output: [1,3,4]
@@ -50,7 +55,7 @@ public class Q0199_Binary_Tree_Right_Side_View {
             currLevel = nextLevel.clone();
             nextLevel.clear();
 
-            while (! currLevel.isEmpty()) {
+            while (!currLevel.isEmpty()) {
                 node = currLevel.poll();
 
                 // add child nodes of the current level

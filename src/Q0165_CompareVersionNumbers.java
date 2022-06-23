@@ -44,49 +44,13 @@ Version strings are composed of numeric strings separated by dots . and this num
 Version strings do not start or end with dots, and they will not be two consecutive dots.
  */
 public class Q0165_CompareVersionNumbers {
-    public int compareVersionByDavid(String version1, String version2) {
-        String[] versionArr1 = version1.split("\\.");
-        String[] versionArr2 = version2.split("\\.");
-        int i = 0;
-        int j = 0;
-        while (i < versionArr1.length && j < versionArr2.length) {
-            int value1 = Integer.parseInt(versionArr1[i]);
-            int value2 = Integer.parseInt(versionArr2[j]);
-            if (value1 > value2) {
-                return 1;
-            } else if (value1 < value2) {
-                return -1;
-            }
-            i++;
-            j++;
-        }
-
-        if (i == versionArr1.length && j == versionArr2.length) {
-            return 0;
-        } else if (i < versionArr1.length) {
-            while (i < versionArr1.length && Integer.parseInt(versionArr1[i]) == 0) {
-                i++;
-            }
-
-            if (i == versionArr1.length) {
-                return 0;
-            } else {
-                return 1;
-            }
-        } else if (j < versionArr2.length) {
-            while (j < versionArr2.length && Integer.parseInt(versionArr2[j]) == 0) j++;
-            if (j == versionArr2.length) return 0; else return -1;
-        }
-        return 0;
-    }
-
     // https://leetcode.com/problems/compare-version-numbers/discuss/50774/Accepted-small-Java-solution.
     public int compareVersion(String version1, String version2) {
         String[] levels1 = version1.split("\\.");
         String[] levels2 = version2.split("\\.");
 
         int length = Math.max(levels1.length, levels2.length);
-        for (int i=0; i < length; i++) {
+        for (int i = 0; i < length; i++) {
             Integer v1 = i < levels1.length ? Integer.parseInt(levels1[i]) : 0;
             Integer v2 = i < levels2.length ? Integer.parseInt(levels2[i]) : 0;
             int compare = v1.compareTo(v2);

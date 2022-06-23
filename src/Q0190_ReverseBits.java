@@ -9,7 +9,7 @@ In Java, the compiler represents the signed integers using 2's complement notati
 
 Example 1:
 
-Input: n = 00000010100101000001111010011100
+Input:            n = 00000010100101000001111010011100
 Output:    964176192 (00111001011110000010100101000000)
 Explanation: The input binary string 00000010100101000001111010011100 represents the unsigned integer 43261596, so return 964176192 which its binary representation is 00111001011110000010100101000000.
 Example 2:
@@ -27,7 +27,7 @@ public class Q0190_ReverseBits {
 
             boolean thisBitOn = ((1 << bitPos) & n) != 0;
 
-            if(thisBitOn) toReturn |= (1 << toReturnBitPos);
+            if (thisBitOn) toReturn |= (1 << toReturnBitPos);
         }
 
         return toReturn;

@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,7 +33,7 @@ Output: [1,4,8,2,5,9,3,6,7].
 public class Q0281_ZigzagIterator {
 
     // https://leetcode.com/problems/zigzag-iterator/discuss/71779/Simple-Java-solution-for-K-vector
-    public class ZigzagIterator {
+    public static class ZigzagIterator {
         LinkedList<Iterator> list;
         public ZigzagIterator(List<Integer> v1, List<Integer> v2) {
             list = new LinkedList<Iterator>();
@@ -58,4 +59,12 @@ public class Q0281_ZigzagIterator {
      * while (i.hasNext()) v[f()] = i.next();
      */
 
+    public static void main(String[] args) {
+        List<Integer> v1 = Arrays.asList(new Integer[] {1, 2});
+        List<Integer> v2 = Arrays.asList(new Integer[] {3, 4, 5, 6});
+        ZigzagIterator zi = new ZigzagIterator(v1, v2);
+        while (zi.hasNext()) {
+            System.out.println(zi.next());
+        }
+    }
 }
